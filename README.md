@@ -1,4 +1,4 @@
-<h1Project developed on Mobile Applications Development in ISCTE-University Institute of Lisbon<\h1>
+<h1>Project developed on Mobile Applications Development in ISCTE-University Institute of Lisbon<\h1>
 
 <h1>Group Members</h1>
 <ul>
