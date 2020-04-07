@@ -32,17 +32,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, text, duration).show();
             }
         });
+    }
 
-        Button RegisterButton = (Button) findViewById(R.id.Register);
-
-        RegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Register.class);
-                startActivity(i);
-            }
-        });
-
+    public void registerButtonClick(View v){
+        Intent i = new Intent(MainActivity.this, Register.class);
+        startActivity(i);
     }
 
 }
