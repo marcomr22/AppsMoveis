@@ -12,7 +12,7 @@
         <activity android:name=".Full_List_Long"></activity>
         <activity android:name=".Register" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
