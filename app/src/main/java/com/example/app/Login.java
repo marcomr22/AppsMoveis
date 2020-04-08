@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import authentication.FirebaseHandler;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseHandler firebaseHandler;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Register.class);
+                Intent i = new Intent(Login.this, Register.class);
                 startActivity(i);
             }
         });
