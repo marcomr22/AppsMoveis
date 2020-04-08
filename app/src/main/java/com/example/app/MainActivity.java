@@ -12,31 +12,41 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import authentication.FirebaseHandler;
+
 public class MainActivity extends AppCompatActivity {
+    private EditText email;
+    private EditText password;
+    private FirebaseHandler firebaseHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        email = findViewById(R.id.Email);
+        password = findViewById(R.id.Password);
+        firebaseHandler = new FirebaseHandler();
+
         Button LoginButton = (Button) findViewById(R.id.Login);
+        Button RegisterButton = (Button) findViewById(R.id.Register);
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getApplicationContext();
-                CharSequence text = "Invalid E-mail or Password";
-                int duration = Toast.LENGTH_SHORT;
-                Toast.makeText(context, text, duration).show();
+                firebaseHandler.SignInUser(email, password, getApplicationContext());
+            }
+        });
+
+        RegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Register.class);
+                startActivity(i);
             }
         });
     }
-
-    public void registerButtonClick(View v){
-        Intent i = new Intent(MainActivity.this, Register.class);
-        startActivity(i);
-    }
-
 }
