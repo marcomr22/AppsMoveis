@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#64B5F6"
         android:text="Profile Settings"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/HiredServicesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,18 +31,18 @@
         app:srcCompat="@drawable/icon_profile" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/MyServicesButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#64B5F6"
         android:text="My Services"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/HiredServicesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_profile_settings" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/HiredServicesButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="292dp"
@@ -53,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/LogOutButton"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#64B5F6"
@@ -62,6 +62,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/HiredServicesButton"
         app:layout_constraintVertical_bias="0.581" />
 </androidx.constraintlayout.widget.ConstraintLayout>
