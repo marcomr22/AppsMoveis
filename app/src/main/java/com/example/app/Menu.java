@@ -31,7 +31,7 @@ public class Menu extends AppCompatActivity {
         ProfileSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Menu.this, ChangePassword.class);
+                Intent i = new Intent(Menu.this, Profile.class);
                 startActivity(i);
             }
         });

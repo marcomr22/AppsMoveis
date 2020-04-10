@@ -33,7 +33,7 @@ public class ChangePassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseHandler.ChangePassword(getApplicationContext(), OldPassword, NewPassword, NewPassword2);
-                Intent i = new Intent (ChangePassword.this, Menu.class);
+                Intent i = new Intent (ChangePassword.this, Profile.class);
                 startActivity(i);
             }
         });
