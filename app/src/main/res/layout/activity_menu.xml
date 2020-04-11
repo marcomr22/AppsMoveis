@@ -9,14 +9,14 @@
     tools:context=".Menu">
 
     <Button
-        android:id="@+id/button_profile_settings"
+        android:id="@+id/ProfileSettingsButton"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:backgroundTint="#64B5F6"
         android:text="Profile Settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/HiredServicesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,20 +35,20 @@
         app:srcCompat="@drawable/icon_profile" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/MyServicesButton"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:backgroundTint="#64B5F6"
         android:text="My Services"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/HiredServicesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_profile_settings" />
+        app:layout_constraintTop_toBottomOf="@+id/ProfileSettingsButton" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/HiredServicesButton"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:layout_marginBottom="292dp"
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/LogOutButton"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#64B5F6"
@@ -71,6 +71,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintTop_toBottomOf="@+id/HiredServicesButton"
+        app:layout_constraintVertical_bias="0.286" />
+
+    <Button
+        android:id="@+id/button6"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
+        android:text="Credits"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LogOutButton"
+        app:layout_constraintVertical_bias="0.436" />
 </androidx.constraintlayout.widget.ConstraintLayout>
