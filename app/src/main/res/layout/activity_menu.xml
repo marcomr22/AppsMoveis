@@ -9,7 +9,7 @@
     tools:context=".Menu">
 
     <Button
-        android:id="@+id/button_profile_settings"
+        android:id="@+id/ProfileSettingsButton"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:backgroundTint="#64B5F6"
@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@+id/HiredServicesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_profile_settings" />
+        app:layout_constraintTop_toBottomOf="@+id/ProfileSettingsButton" />
 
     <Button
         android:id="@+id/HiredServicesButton"
