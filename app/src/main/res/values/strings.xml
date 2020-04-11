@@ -20,4 +20,12 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_change_password">Change Password</string>
     <string name="title_activity_change_password_fragment">ChangePasswordFragment</string>
+
+    <string name="comments">"Comments"</string>
+    <string name="my_Services">"My Services"</string>
+    <string name="edit">"Edit"</string>
+    <string name="rate">"Rate"</string>
+    <string name="hired_services">"Hired Services"</string>
+    <string name="add_new_service">"Add New Service"</string>
+
 </resources>
