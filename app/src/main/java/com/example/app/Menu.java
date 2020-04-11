@@ -21,7 +21,7 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        ProfileSettingsButton = findViewById(R.id.button_profile_settings);
+        ProfileSettingsButton = findViewById(R.id.ProfileSettingsButton);
         MyServicesButton = findViewById(R.id.MyServicesButton);
         HiredServicesButton = findViewById(R.id.HiredServicesButton);
         LogOutButton = findViewById(R.id.LogOutButton);

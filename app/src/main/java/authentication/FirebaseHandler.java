@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.app.Login;
 import com.example.app.Menu;
+import com.example.app.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -164,7 +165,7 @@ public class FirebaseHandler {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(context, "Password change successful", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(context, Menu.class);
+                        Intent i = new Intent(context, Profile.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(i);
                     }
