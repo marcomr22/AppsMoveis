@@ -15,7 +15,7 @@ public class FullListShort extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    ArrayList<ItemModel> foodsList;
+    ArrayList<ItemModel> itemsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,18 +24,18 @@ public class FullListShort extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rv);
 
-        foodsList = new ArrayList<>();
+        itemsList = new ArrayList<>();
 
-        foodsList.add(new ItemModel(R.drawable.ic_launcher_foreground,"chaat","100"));
-        foodsList.add(new ItemModel(R.drawable.ic_launcher_background,"segundaaaaaa","50"));
-        foodsList.add(new ItemModel(R.drawable.ic_launcher_foreground,"terceirrrrrra","250"));
+        itemsList.add(new ItemModel(R.drawable.ic_launcher_foreground,"chaat","100"));
+        itemsList.add(new ItemModel(R.drawable.ic_launcher_background,"segundaaaaaa","50"));
+        itemsList.add(new ItemModel(R.drawable.ic_launcher_foreground,"terceirrrrrra","250"));
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager( this);
         RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
         recyclerView.setLayoutManager(rvLiLayoutManager);
 
-        ItemAdapter adapter = new ItemAdapter(this, foodsList);
+        ItemAdapter adapter = new ItemAdapter(this, itemsList);
 
         recyclerView.setAdapter(adapter);
     }

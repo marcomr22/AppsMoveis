@@ -1,17 +1,17 @@
 package com.example.app;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
 
 import java.util.ArrayList;
 
 import recycleView_cardView.ItemAdapter;
 import recycleView_cardView.ItemModel;
 
-public class MyServices  extends AppCompatActivity {
+public class HiredServices extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
@@ -20,7 +20,7 @@ public class MyServices  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_services);
+        setContentView(R.layout.activity_hired_services);
 
         recyclerView = findViewById(R.id.rv);
 
@@ -36,5 +36,8 @@ public class MyServices  extends AppCompatActivity {
         recyclerView.setLayoutManager(rvLiLayoutManager);
 
         ItemAdapter adapter = new ItemAdapter(this, itemsList);
+
+        recyclerView.setAdapter(adapter);
+
     }
 }
