@@ -23,7 +23,7 @@
 
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-
+        android:background="#DFCDC7"
 
         android:layout_height="0dp"
         android:fitsSystemWindows="true"
