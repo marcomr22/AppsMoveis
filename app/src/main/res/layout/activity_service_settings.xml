@@ -192,12 +192,12 @@
         android:text="@string/hourly_rate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText5"
+        app:layout_constraintStart_toEndOf="@+id/price"
         app:layout_constraintTop_toBottomOf="@+id/editText4"
         app:layout_constraintVertical_bias="0.05" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/price"
         android:layout_width="105dp"
         android:layout_height="45dp"
         android:layout_marginStart="64dp"
@@ -210,6 +210,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText4"
         app:layout_constraintVertical_bias="0.05"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/serviceTitle"
+        android:layout_width="243dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:hint="@string/service_title_hint"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toEndOf="@+id/categories_prompt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.66"
         android:autofillHints="" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
