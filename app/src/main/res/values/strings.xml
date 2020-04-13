@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Top Task</string>
+    <string name="app_icon"/>
     <string name="title_activity_main">MainActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -27,5 +28,49 @@
     <string name="rate">"Rate"</string>
     <string name="hired_services">"Hired Services"</string>
     <string name="add_new_service">"Add New Service"</string>
+
+    <string name="change_username">"Change Username"</string>
+    <string name="change_email">"Change E-mail"</string>
+    <string name="change_contact">"Change Contact"</string>
+    <string name="change_password">"Change Password"</string>
+    <string name="delete_account">"Delete Account"</string>
+    <string name="recover_password">Recover Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="register">Register</string>
+    <string name="hire">Hire</string>
+    <string name="view_comments">View Comments</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">E-mail</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="my_profile_picture"/>
+    <string name="rate_opinion_hint">"Give your opinion to help other users"</string>
+    <string name="rate_this_service">Please rate this service</string>
+    <string name="hint_old_password">Old Password</string>
+    <string name="hint_confirm_new_password">Confirm New Password</string>
+    <string name="hint_new_password">New Password</string>
+    <string name="login">Login</string>
+    <string name="log_out">Log Out</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="profile_settings">Profile Settings</string>
+    <string name="credits">Credits</string>
+    <string name="google_icon"/>
+    <string name="category_1">Carpentry</string>
+    <string name="category_2">Mechanics</string>
+    <string name="category_3">Technology</string>
+    <string name="category_4">Cooking</string>
+    <string name="category_5">Child Care</string>
+    <string name="category_6">Pet Care</string>
+    <string name="category_7">Event Planning</string>
+    <string name="category_8"><![CDATA[Healt & Beauty]]></string>
+    <string name="category_9">Other</string>
+    <string name="category_service">Category of\nyour service:</string>
+    <string name="write_description">Write a detailed description of your service</string>
+    <string name="add_pictures">Add some pictures of your work</string>
+    <string name="hourly_rate">Hourly Rate</string>
+    <string name="pricing">Pricing</string>
+
+
 
 </resources>

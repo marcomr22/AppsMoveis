@@ -7,22 +7,23 @@
     tools:context=".Register">
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/registerGoogle"
         android:layout_width="47dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImageView7"
-        app:layout_constraintVertical_bias="0.911"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938"
         app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal"
-        tools:layout_editor_absoluteX="182dp" />
+        android:contentDescription="@string/google_icon" />
 
     <Button
-        android:id="@+id/RegisterButton"
+        android:id="@+id/registerButton"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:backgroundTint="#5AAAEA"
-        android:text="Register"
+        android:text="@string/register"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,8 +37,9 @@
         android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/hint_password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,19 +53,21 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="E-mail"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.567" />
+        app:layout_constraintVertical_bias="0.567"
+        android:autofillHints="" />
 
     <ImageView
-        android:id="@+id/ImageView2"
+        android:id="@+id/app_icon"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:contentDescription="@string/app_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -77,12 +81,13 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="User Name"
+        android:hint="@string/hint_username"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintVertical_bias="0.453"
+        android:autofillHints="" />
 </androidx.constraintlayout.widget.ConstraintLayout>

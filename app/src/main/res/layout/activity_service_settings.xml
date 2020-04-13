@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServiceSettings">
+
+    <Button
+        android:id="@+id/confirmService"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#5AAAEA"
+        android:text="@string/confirm"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/deleteService"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#5AAAEA"
+        android:text="@string/delete"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cancelService"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#5AAAEA"
+        android:text="@string/cancel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/deleteService"
+        app:layout_constraintStart_toEndOf="@+id/confirmService" />
+
+    <TextView
+        android:id="@+id/categories_prompt"
+        android:layout_width="121dp"
+        android:layout_height="52dp"
+        android:lines="2"
+        android:text="@string/category_service"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/service_categories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.608" />
+
+    <RadioGroup
+        android:id="@+id/service_categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.221">
+
+        <RadioButton
+            android:id="@+id/carpentry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_1"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="89dp" />
+
+        <RadioButton
+            android:id="@+id/mechanics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_2"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="121dp" />
+
+        <RadioButton
+            android:id="@+id/technology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_3"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="153dp" />
+
+        <RadioButton
+            android:id="@+id/cooking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_4"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="185dp" />
+
+        <RadioButton
+            android:id="@+id/child_care"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_5" />
+
+        <RadioButton
+            android:id="@+id/pet_care"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_6"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="249dp" />
+
+        <RadioButton
+            android:id="@+id/event_planning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_7"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="281dp" />
+
+        <RadioButton
+            android:id="@+id/health_beauty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_8"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="313dp" />
+
+        <RadioButton
+            android:id="@+id/other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_9"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="345dp" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/editText4"
+        style="@style/Base.Widget.MaterialComponents.AutoCompleteTextView"
+        android:layout_width="227dp"
+        android:layout_height="289dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/write_description"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toEndOf="@+id/service_categories"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.219" />
+
+    <TextView
+        android:id="@+id/pictures_prompt"
+        android:layout_width="274dp"
+        android:layout_height="28dp"
+        android:lines="2"
+        android:text="@string/add_pictures"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hour_rate"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <CheckBox
+        android:id="@+id/hour_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
+        android:text="@string/hourly_rate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText5"
+        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="105dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/pricing"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/hour_rate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintVertical_bias="0.05"
+        android:autofillHints="" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

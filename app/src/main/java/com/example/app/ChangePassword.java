@@ -22,9 +22,9 @@ public class ChangePassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        OldPassword = findViewById(R.id.OldPassword);
-        NewPassword = findViewById(R.id.NewPassword);
-        NewPassword2 = findViewById(R.id.NewPassword2);
+        OldPassword = findViewById(R.id.old_pass);
+        NewPassword = findViewById(R.id.new_pass);
+        NewPassword2 = findViewById(R.id.new_pass_confirm);
         ChangePasswordButton = findViewById(R.id.changePasswordButton);
 
         firebaseHandler = new FirebaseHandler();
