@@ -16,27 +16,28 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.694" />
+        app:layout_constraintVertical_bias="0.766" />
 
     <Button
-        android:id="@+id/appIcon"
+        android:id="@+id/Register"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginStart="105dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="106dp"
         android:layout_marginBottom="118dp"
         android:backgroundTint="#5AAAEA"
-        android:onClick="registerButtonClick"
         android:text="Register"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Login" />
+        app:layout_constraintTop_toBottomOf="@+id/Login"
+        app:layout_constraintVertical_bias="0.272" />
 
     <EditText
         android:id="@+id/Password"
@@ -65,7 +66,7 @@
         app:layout_constraintVertical_bias="0.44" />
 
     <ImageView
-        android:id="@+id/appIcon"
+        android:id="@+id/ImageView7"
         android:layout_width="140dp"
         android:layout_height="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,12 +78,14 @@
         app:srcCompat="@drawable/g1049" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/LoginGoogle"
         android:layout_width="47dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appIcon"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal"
-        tools:layout_editor_absoluteX="182dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageView7"
+        app:layout_constraintVertical_bias="0.483"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

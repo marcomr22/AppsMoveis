@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.app.Login;
 import com.example.app.Menu;
+import com.example.app.PasswordRecovery;
 import com.example.app.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -113,6 +114,39 @@ public class FirebaseHandler {
                     }
                 }
                 else {
+                    Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void RecoverPassword (EditText email, final Context context){
+        String email_aux = email.getText().toString().trim();
+        mAuth = FirebaseAuth.getInstance();
+
+        if (email_aux.isEmpty()){
+            email.setError("Please insert your email");
+            email.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email_aux).matches()) {
+            email.setError("Please enter a valid email");
+            email.requestFocus();
+            return;
+        }
+
+        mAuth.sendPasswordResetEmail(email_aux).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(context, "Please check your email for the instructions", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(context, Login.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
+                }
+
+                else{
                     Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }

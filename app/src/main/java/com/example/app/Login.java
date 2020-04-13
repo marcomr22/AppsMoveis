@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import authentication.FirebaseHandler;
 
@@ -26,7 +27,8 @@ public class Login extends AppCompatActivity {
         firebaseHandler = new FirebaseHandler();
 
         Button LoginButton = (Button) findViewById(R.id.Login);
-        Button RegisterButton = (Button) findViewById(R.id.appIcon);
+        Button RegisterButton = (Button) findViewById(R.id.Register);
+        ImageButton LoginGoogle = (ImageButton) findViewById(R.id.LoginGoogle);
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override

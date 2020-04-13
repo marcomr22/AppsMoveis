@@ -26,7 +26,7 @@ public class Register extends AppCompatActivity{
         password = findViewById(R.id.password);
         firebaseHandler = new FirebaseHandler();
 
-        RegisterButton = findViewById(R.id.appIcon);
+        RegisterButton = findViewById(R.id.RegisterButton);
 
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
