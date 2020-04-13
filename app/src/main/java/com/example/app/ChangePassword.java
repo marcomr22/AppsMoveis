@@ -14,6 +14,7 @@ public class ChangePassword extends AppCompatActivity {
     private EditText OldPassword;
     private EditText NewPassword;
     private EditText NewPassword2;
+    private Button ChangePasswordButton;
     private FirebaseHandler firebaseHandler;
 
     @Override
@@ -21,17 +22,19 @@ public class ChangePassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        OldPassword = findViewById(R.id.OldPassword);
-        NewPassword = findViewById(R.id.NewPassword);
-        NewPassword2 = findViewById(R.id.NewPassword2);
-        Button changePasswordButton = findViewById(R.id.ChangePassword);
+        OldPassword = findViewById(R.id.old_pass);
+        NewPassword = findViewById(R.id.new_pass);
+        NewPassword2 = findViewById(R.id.new_pass_confirm);
+        ChangePasswordButton = findViewById(R.id.changePasswordButton);
 
         firebaseHandler = new FirebaseHandler();
 
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+        ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseHandler.ChangePassword(getApplicationContext(), OldPassword, NewPassword, NewPassword2);
+                Intent i = new Intent (ChangePassword.this, Profile.class);
+                startActivity(i);
             }
         });
     }
