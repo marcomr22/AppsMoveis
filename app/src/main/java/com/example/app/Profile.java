@@ -17,9 +17,9 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        ChangeUsernameButton = findViewById(R.id.ChangeUsernameButton);
-        ChangePasswordButton = findViewById(R.id.ChangePasswordButton);
-        DeleteAccountButton = findViewById(R.id.DeleteAccountButton);
+        ChangeUsernameButton.findViewById(R.id.changeUsernameButton);
+        ChangePasswordButton.findViewById(R.id.changePasswordButton);
+        DeleteAccountButton.findViewById(R.id.deleteAccountButton);
 
         ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
