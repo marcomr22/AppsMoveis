@@ -1,30 +1,22 @@
 package handlers;
 
-import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Document;
 
 import models.User;
 
 public class FirestoreHandler {
 
-    public static final String TAG_FAILURE_WRITE = "Failure Write";
-    public static final String TAG_FAILURE_READING = "Failure reading";
-    public static final String TAG_READ_SUCCESSFUL = "Read Successfully";
+    private static final String TAG_FAILURE_WRITE = "Failure Write";
+    private static final String TAG_FAILURE_READING = "Failure reading";
+    private static final String TAG_READ_SUCCESSFUL = "Read Successfully";
     private static String TAG_SUCCESS_WRITE = "Write Successfully";
 
     public static void saveUser(User user){
@@ -48,7 +40,7 @@ public class FirestoreHandler {
     }
 
     public interface UserCallback{
-        public void onCallback(User user);
+        void onCallback(User user);
     }
 
     public static void getUser(String uID, final UserCallback callback){

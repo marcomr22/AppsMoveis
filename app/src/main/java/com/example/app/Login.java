@@ -25,7 +25,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //FirestoreHandler.saveUser(new User("uid0", "nome0", "email@email.com", "url"));
-        FirestoreHandler fh = new FirestoreHandler(this, "uid0");
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
