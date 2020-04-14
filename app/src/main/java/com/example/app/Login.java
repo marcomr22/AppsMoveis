@@ -5,12 +5,15 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import handlers.AuthHandler;
+import handlers.FirestoreHandler;
+import models.User;
 
 public class Login extends AppCompatActivity {
     private EditText email;
@@ -21,6 +24,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //FirestoreHandler.saveUser(new User("uid0", "nome0", "email@email.com", "url"));
+        FirestoreHandler fh = new FirestoreHandler(this, "uid0");
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
@@ -42,6 +47,14 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Login.this, Register.class);
                 startActivity(i);
+            }
+        });
+
+
+        FirestoreHandler.getUser("uid0", new FirestoreHandler.UserCallback() {
+            @Override
+            public void onCallback(User user) {
+                Log.d("teste", user.toString());
             }
         });
     }
