@@ -10,6 +10,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import models.Advert;
 import models.User;
 
 public class FirestoreHandler {
@@ -63,6 +64,24 @@ public class FirestoreHandler {
                 });
     }
 
+    public static void saveAdvert(Advert advert){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        DocumentReference doc = db.document("users/"+advert.getOwnerID()+"/adverts/"+ advert.getId());
+        doc.set(advert)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG_SUCCESS_WRITE, "Advert added to bd.");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG_FAILURE_WRITE, "Advert failed write on db.");
+                    }
+                });
+    }
 
 
 }

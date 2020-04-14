@@ -1,5 +1,8 @@
 package models;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Advert {
 
     public enum Category {
@@ -30,16 +33,18 @@ public class Advert {
     }
 
     private String id;
+    private String ownerID;
     private Category category;
     private String description;
     private int price;
     private boolean hourly;
-    private String[] imagesURL;
+    private List<String> imagesURL;
 
     public Advert() {}
 
-    public Advert(String id, Category category, String description, int price, boolean hourly, String[] imagesURL) {
+    public Advert(String id, String ownerID, Category category, String description, int price, boolean hourly, List<String> imagesURL) {
         this.id = id;
+        this.ownerID = ownerID;
         this.category = category;
         this.description = description;
         this.price = price;
@@ -67,8 +72,12 @@ public class Advert {
         return hourly;
     }
 
-    public String[] getImagesURL() {
+    public List<String> getImagesURL() {
         return imagesURL;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
     }
 
     public void setCategory(Category category) {
@@ -87,7 +96,24 @@ public class Advert {
         this.hourly = hourly;
     }
 
-    public void setImagesURL(String[] imagesURL) {
+    public void setImagesURL(List<String> imagesURL) {
         this.imagesURL = imagesURL;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
+    }
+
+    @Override
+    public String toString() {
+        return "Advert{" +
+                "id='" + id + '\'' +
+                ", ownerID='" + ownerID + '\'' +
+                ", category=" + category +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", hourly=" + hourly +
+                ", imagesURL=" + imagesURL +
+                '}';
     }
 }

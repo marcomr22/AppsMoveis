@@ -11,7 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 
+import java.util.Arrays;
+
 import handlers.AuthHandler;
+import handlers.FirestoreHandler;
+import models.Advert;
 
 public class Login extends AppCompatActivity {
     private EditText email;
@@ -22,7 +26,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        FirestoreHandler.saveAdvert(new Advert("aid0", "uid0", Advert.Category.CARPENTRY, "test", 50, true, Arrays.asList("asdf")));
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
         AuthHandler = new AuthHandler();
