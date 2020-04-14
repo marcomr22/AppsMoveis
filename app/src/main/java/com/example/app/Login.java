@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity {
 
         Button LoginButton = (Button) findViewById(R.id.Login);
         Button RegisterButton = (Button) findViewById(R.id.Register);
+        Button ForgotPasswordButton = (Button) findViewById(R.id.pass_recovery);
         ImageButton LoginGoogle = (ImageButton) findViewById(R.id.LoginGoogle);
 
         LoginButton.setOnClickListener(new View.OnClickListener() {

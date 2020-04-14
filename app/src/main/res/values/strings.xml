@@ -71,6 +71,7 @@
     <string name="hourly_rate">Hourly Rate</string>
     <string name="pricing">Pricing</string>
     <string name="service_title_hint">Write a title for your service</string>
+    <string name="forgot_your_password">Forgot your password?</string>
 
 
 </resources>
