@@ -1,7 +1,8 @@
-package handlers;
+package authentication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.app.Login;
 import com.example.app.Menu;
+import com.example.app.PasswordRecovery;
 import com.example.app.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,8 +21,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
-public class AuthHandler {
+import java.util.Objects;
+
+public class FirebaseHandler {
     private static final String TAG = "FireBaseHandler";
 
     private FirebaseAuth mAuth;
@@ -113,6 +119,14 @@ public class AuthHandler {
                 }
             }
         });
+    }
+
+    public void SignInGoogle (){
+    }
+
+    public FirebaseUser getUser (){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user;
     }
 
     public void RecoverPassword (EditText email, final Context context){

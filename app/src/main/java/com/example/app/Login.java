@@ -10,12 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import handlers.AuthHandler;
+import com.google.firebase.auth.FirebaseAuth;
+
+import authentication.FirebaseHandler;
 
 public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
-    private AuthHandler authHandler;
+    private FirebaseHandler firebaseHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class Login extends AppCompatActivity {
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
-        authHandler = new AuthHandler();
+        firebaseHandler = new FirebaseHandler();
 
         Button LoginButton = (Button) findViewById(R.id.Login);
         Button RegisterButton = (Button) findViewById(R.id.Register);
@@ -34,7 +36,7 @@ public class Login extends AppCompatActivity {
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authHandler.SignInUser(email, password, getApplicationContext());
+                firebaseHandler.SignInUser(email, password, getApplicationContext());
             }
         });
 
@@ -45,5 +47,17 @@ public class Login extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        LoginGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseHandler.SignInGoogle();
+            }
+        });
+
+        if (firebaseHandler.getUser() != null){
+            Intent i = new Intent(Login.this, Menu.class);
+            startActivity(i);
+        }
     }
 }
