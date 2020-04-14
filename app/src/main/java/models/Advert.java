@@ -36,6 +36,8 @@ public class Advert {
     private boolean hourly;
     private String[] imagesURL;
 
+    public Advert() {}
+
     public Advert(String id, Category category, String description, int price, boolean hourly, String[] imagesURL) {
         this.id = id;
         this.category = category;
@@ -45,6 +47,47 @@ public class Advert {
         this.imagesURL = imagesURL;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public Category getCategory() {
+        return category;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public boolean isHourly() {
+        return hourly;
+    }
+
+    public String[] getImagesURL() {
+        return imagesURL;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setHourly(boolean hourly) {
+        this.hourly = hourly;
+    }
+
+    public void setImagesURL(String[] imagesURL) {
+        this.imagesURL = imagesURL;
+    }
 }
