@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import authentication.FirebaseHandler;
+import handlers.AuthHandler;
 
 public class Register extends AppCompatActivity{
     private EditText username;
     private EditText email;
     private EditText password;
     private Button RegisterButton;
-    private FirebaseHandler firebaseHandler;
+    private AuthHandler authHandler;
 
 
     @Override
@@ -24,14 +24,14 @@ public class Register extends AppCompatActivity{
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        firebaseHandler = new FirebaseHandler();
+        authHandler = new AuthHandler();
 
-        RegisterButton = findViewById(R.id.RegisterButton);
+        RegisterButton = findViewById(R.id.registerButton);
 
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseHandler.CreateUser(email, password, getApplicationContext());
+                authHandler.CreateUser(email, password, getApplicationContext());
             }
         });
     }

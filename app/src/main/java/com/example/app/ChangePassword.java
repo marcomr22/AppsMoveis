@@ -8,30 +8,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import authentication.FirebaseHandler;
+import handlers.AuthHandler;
 
 public class ChangePassword extends AppCompatActivity {
     private EditText OldPassword;
     private EditText NewPassword;
     private EditText NewPassword2;
-    private FirebaseHandler firebaseHandler;
+    private Button ChangePasswordButton;
+    private AuthHandler authHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        OldPassword = findViewById(R.id.OldPassword);
-        NewPassword = findViewById(R.id.NewPassword);
-        NewPassword2 = findViewById(R.id.NewPassword2);
-        Button changePasswordButton = findViewById(R.id.ChangePassword);
+        OldPassword = findViewById(R.id.old_pass);
+        NewPassword = findViewById(R.id.new_pass);
+        NewPassword2 = findViewById(R.id.new_pass_confirm);
+        ChangePasswordButton = findViewById(R.id.changePasswordButton);
 
-        firebaseHandler = new FirebaseHandler();
+        authHandler = new AuthHandler();
 
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+        ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseHandler.ChangePassword(getApplicationContext(), OldPassword, NewPassword, NewPassword2);
+                authHandler.ChangePassword(getApplicationContext(), OldPassword, NewPassword, NewPassword2);
+                Intent i = new Intent (ChangePassword.this, Profile.class);
+                startActivity(i);
             }
         });
     }
