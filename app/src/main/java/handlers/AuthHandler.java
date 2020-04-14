@@ -2,6 +2,7 @@ package handlers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.app.Login;
 import com.example.app.Menu;
+import com.example.app.PasswordRecovery;
 import com.example.app.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,6 +21,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Objects;
 
 public class AuthHandler {
     private static final String TAG = "FireBaseHandler";
@@ -115,6 +121,14 @@ public class AuthHandler {
         });
     }
 
+    public void SignInGoogle (){
+    }
+
+    public FirebaseUser getUser (){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user;
+    }
+
     public void RecoverPassword (EditText email, final Context context){
         String email_aux = email.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
@@ -154,7 +168,7 @@ public class AuthHandler {
         Toast.makeText(context, "Log Out successful", Toast.LENGTH_SHORT).show();
     }
 
-    public void ChangePassword (final Context context, EditText OldPassword, EditText NewPassword, EditText NewPassword2){
+    public void ChangePassword (final Context context, final EditText OldPassword, final EditText NewPassword, final EditText NewPassword2){
         String OldPasswordAux = OldPassword.getText().toString().trim();
         String NewPasswordAux = NewPassword.getText().toString().trim();
         String NewPassword2Aux = NewPassword2.getText().toString().trim();
@@ -193,6 +207,9 @@ public class AuthHandler {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
+                        OldPassword.setText("");
+                        NewPassword.setText("");
+                        NewPassword2.setText("");
                         Toast.makeText(context, "Password change successful", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(context, Profile.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

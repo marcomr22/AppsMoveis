@@ -5,39 +5,39 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.firebase.auth.FirebaseAuth;
+
 import handlers.AuthHandler;
-import handlers.FirestoreHandler;
-import models.User;
 
 public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
-    private AuthHandler authHandler;
+    private AuthHandler AuthHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //FirestoreHandler.saveUser(new User("uid0", "nome0", "email@email.com", "url"));
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
-        authHandler = new AuthHandler();
+        AuthHandler = new AuthHandler();
 
-        Button LoginButton = (Button) findViewById(R.id.Login);
-        Button RegisterButton = (Button) findViewById(R.id.Register);
-        ImageButton LoginGoogle = (ImageButton) findViewById(R.id.LoginGoogle);
+        Button LoginButton = findViewById(R.id.Login);
+        Button RegisterButton = findViewById(R.id.Register);
+        Button PassRecoveryButton = findViewById(R.id.pass_recovery);
+        ImageButton LoginGoogle = findViewById(R.id.LoginGoogle);
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authHandler.SignInUser(email, password, getApplicationContext());
+                AuthHandler.SignInUser(email, password, getApplicationContext());
             }
         });
 
@@ -49,12 +49,24 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
-        FirestoreHandler.getUser("uid0", new FirestoreHandler.UserCallback() {
+        LoginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCallback(User user) {
-                Log.d("teste", user.toString());
+            public void onClick(View v) {
+                AuthHandler.SignInGoogle();
             }
         });
+
+        PassRecoveryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Login.this, PasswordRecovery.class);
+                startActivity(i);
+            }
+        });
+
+        if (AuthHandler.getUser() != null){
+            Intent i = new Intent(Login.this, Menu.class);
+            startActivity(i);
+        }
     }
 }
