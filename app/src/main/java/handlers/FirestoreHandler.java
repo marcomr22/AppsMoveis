@@ -17,7 +17,7 @@ public class FirestoreHandler {
     private static final String TAG_FAILURE_WRITE = "Failure Write";
     private static final String TAG_FAILURE_READING = "Failure reading";
     private static final String TAG_READ_SUCCESSFUL = "Read Successfully";
-    private static String TAG_SUCCESS_WRITE = "Write Successfully";
+    private static final String TAG_SUCCESS_WRITE = "Write Successfully";
 
     public static void saveUser(User user){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -62,5 +62,7 @@ public class FirestoreHandler {
                     }
                 });
     }
+
+
 
 }
