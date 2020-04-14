@@ -1,4 +1,4 @@
-package authentication;
+package handlers;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +26,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
-public class FirebaseHandler {
+public class AuthHandler {
     private static final String TAG = "FireBaseHandler";
 
     private FirebaseAuth mAuth;
