@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
@@ -118,6 +119,14 @@ public class FirebaseHandler {
                 }
             }
         });
+    }
+
+    public void SignInGoogle (){
+    }
+
+    public FirebaseUser getUser (){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user;
     }
 
     public void RecoverPassword (EditText email, final Context context){

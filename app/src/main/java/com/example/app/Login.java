@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import authentication.FirebaseHandler;
 
 public class Login extends AppCompatActivity {
@@ -44,5 +46,17 @@ public class Login extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        LoginGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseHandler.SignInGoogle();
+            }
+        });
+
+        if (firebaseHandler.getUser() != null){
+            Intent i = new Intent(Login.this, Menu.class);
+            startActivity(i);
+        }
     }
 }
