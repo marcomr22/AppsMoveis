@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import authentication.FirebaseHandler;
+import handlers.AuthHandler;
 
 public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
-    private FirebaseHandler firebaseHandler;
+    private AuthHandler authHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class Login extends AppCompatActivity {
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
-        firebaseHandler = new FirebaseHandler();
+        authHandler = new AuthHandler();
 
         Button LoginButton = (Button) findViewById(R.id.Login);
         Button RegisterButton = (Button) findViewById(R.id.Register);
@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity {
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseHandler.SignInUser(email, password, getApplicationContext());
+                authHandler.SignInUser(email, password, getApplicationContext());
             }
         });
 

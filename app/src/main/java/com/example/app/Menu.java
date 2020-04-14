@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import authentication.FirebaseHandler;
+import handlers.AuthHandler;
 
 public class Menu extends AppCompatActivity {
     private Button ProfileSettingsButton;
     private Button MyServicesButton;
     private Button HiredServicesButton;
     private Button LogOutButton;
-    private FirebaseHandler firebaseHandler;
+    private AuthHandler authHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class Menu extends AppCompatActivity {
         HiredServicesButton = findViewById(R.id.HiredServicesButton);
         LogOutButton = findViewById(R.id.LogOutButton);
 
-        firebaseHandler = new FirebaseHandler();
+        authHandler = new AuthHandler();
 
         ProfileSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class Menu extends AppCompatActivity {
         LogOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseHandler.SignOut(getApplicationContext());
+                authHandler.SignOut(getApplicationContext());
                 Intent i = new Intent(Menu.this, Login.class);
                 startActivity(i);
             }

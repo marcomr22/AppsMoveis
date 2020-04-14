@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import authentication.FirebaseHandler;
+import handlers.AuthHandler;
 
 public class ChangePassword extends AppCompatActivity {
     private EditText OldPassword;
     private EditText NewPassword;
     private EditText NewPassword2;
     private Button ChangePasswordButton;
-    private FirebaseHandler firebaseHandler;
+    private AuthHandler authHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,12 @@ public class ChangePassword extends AppCompatActivity {
         NewPassword2 = findViewById(R.id.new_pass_confirm);
         ChangePasswordButton = findViewById(R.id.changePasswordButton);
 
-        firebaseHandler = new FirebaseHandler();
+        authHandler = new AuthHandler();
 
         ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseHandler.ChangePassword(getApplicationContext(), OldPassword, NewPassword, NewPassword2);
+                authHandler.ChangePassword(getApplicationContext(), OldPassword, NewPassword, NewPassword2);
                 Intent i = new Intent (ChangePassword.this, Profile.class);
                 startActivity(i);
             }
