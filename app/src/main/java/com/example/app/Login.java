@@ -29,10 +29,10 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.Password);
         AuthHandler = new AuthHandler();
 
-        Button LoginButton = (Button) findViewById(R.id.Login);
-        Button RegisterButton = (Button) findViewById(R.id.Register);
-        Button ForgotPasswordButton = (Button) findViewById(R.id.pass_recovery);
-        ImageButton LoginGoogle = (ImageButton) findViewById(R.id.LoginGoogle);
+        Button LoginButton = findViewById(R.id.Login);
+        Button RegisterButton = findViewById(R.id.Register);
+        Button PassRecoveryButton = findViewById(R.id.pass_recovery);
+        ImageButton LoginGoogle = findViewById(R.id.LoginGoogle);
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +53,14 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AuthHandler.SignInGoogle();
+            }
+        });
+
+        PassRecoveryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Login.this, PasswordRecovery.class);
+                startActivity(i);
             }
         });
 

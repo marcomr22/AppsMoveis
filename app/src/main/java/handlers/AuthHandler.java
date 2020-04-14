@@ -168,7 +168,7 @@ public class AuthHandler {
         Toast.makeText(context, "Log Out successful", Toast.LENGTH_SHORT).show();
     }
 
-    public void ChangePassword (final Context context, EditText OldPassword, EditText NewPassword, EditText NewPassword2){
+    public void ChangePassword (final Context context, final EditText OldPassword, final EditText NewPassword, final EditText NewPassword2){
         String OldPasswordAux = OldPassword.getText().toString().trim();
         String NewPasswordAux = NewPassword.getText().toString().trim();
         String NewPassword2Aux = NewPassword2.getText().toString().trim();
@@ -207,6 +207,9 @@ public class AuthHandler {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
+                        OldPassword.setText("");
+                        NewPassword.setText("");
+                        NewPassword2.setText("");
                         Toast.makeText(context, "Password change successful", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(context, Profile.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

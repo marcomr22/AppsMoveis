@@ -25,7 +25,7 @@ public class ChangePassword extends AppCompatActivity {
         OldPassword = findViewById(R.id.old_pass);
         NewPassword = findViewById(R.id.new_pass);
         NewPassword2 = findViewById(R.id.new_pass_confirm);
-        ChangePasswordButton = findViewById(R.id.changePasswordButton);
+        ChangePasswordButton = findViewById(R.id.ChangePasswordButton);
 
         authHandler = new AuthHandler();
 
@@ -33,8 +33,6 @@ public class ChangePassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 authHandler.ChangePassword(getApplicationContext(), OldPassword, NewPassword, NewPassword2);
-                Intent i = new Intent (ChangePassword.this, Profile.class);
-                startActivity(i);
             }
         });
     }
