@@ -67,12 +67,11 @@
                 android:layout_height="352dp"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="pin"
-                tools:ignore="MissingConstraints"
-                >
+                tools:ignore="MissingConstraints">
 
             </androidx.appcompat.widget.Toolbar>
 
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <ImageView
         android:id="@+id/profilePic3"
