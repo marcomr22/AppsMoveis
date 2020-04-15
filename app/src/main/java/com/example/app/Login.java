@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import handlers.AuthHandler;
 import handlers.FirestoreHandler;
 import models.Advert;
+import models.User;
 
 public class Login extends AppCompatActivity {
     private EditText email;
@@ -70,5 +72,14 @@ public class Login extends AppCompatActivity {
             Intent i = new Intent(Login.this, Menu.class);
             startActivity(i);
         }
+
+        FirestoreHandler.getUser("uid0", new FirestoreHandler.UserCallback() {
+            @Override
+            public void onCallback(User user) {
+                Log.d("Test", user.toString());
+
+            }
+        });
+
     }
 }

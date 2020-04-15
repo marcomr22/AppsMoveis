@@ -24,7 +24,7 @@ public class FirestoreHandler {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference doc = db.collection("users").document(user.getuID());
-        doc.set(user.dbModel())
+        doc.set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
