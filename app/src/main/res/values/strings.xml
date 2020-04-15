@@ -72,6 +72,7 @@
     <string name="pricing">Pricing</string>
     <string name="service_title_hint">Write a title for your service</string>
     <string name="forgot_your_password">Forgot your password?</string>
+    <string name="service_picture">Service Picture</string>
 
 
 </resources>
