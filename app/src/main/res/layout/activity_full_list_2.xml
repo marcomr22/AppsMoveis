@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FullListShort">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="420dp"
+        android:clipToPadding="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_marginTop="175dp"
+            android:layout_height="match_parent" />
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_min="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView2"
+        app:layout_constraintWidth_min="150dp">
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:text="Carpentry" />
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:src="@drawable/icon_carpentry"
+            android:textAlignment="center"
+            android:textDirection="firstStrongLtr" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="Mecanics" />
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:src="@drawable/icon_mecanics"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:text="Tecnology" />
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:src="@drawable/icon_tecnology"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="Cooking" />
+
+        <ImageView
+            android:id="@+id/image4"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:src="@drawable/icon_cooking"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:text="Child Care                " />
+
+        <ImageView
+            android:id="@+id/image5"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:src="@drawable/icon_child_care"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:text="Pet Care" />
+
+        <ImageView
+            android:id="@+id/image6"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:src="@drawable/icon_pet_care"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:text="Event Planning          " />
+
+        <ImageView
+            android:id="@+id/image7"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:src="@drawable/icon_event_planning"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:text="Health &amp; Beauty" />
+
+        <ImageView
+            android:id="@+id/image8"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:src="@drawable/icon_health_beauty"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:text="Others" />
+
+        <ImageView
+            android:id="@+id/image9"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:src="@drawable/icon_others"
+            android:textAlignment="center" />
+
+    </GridLayout>
+
+    <ImageView
+        android:id="@+id/profilePic3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="30dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_profile" />
+
+
+    <SearchView
+        android:id="@+id/searchView2"
+        android:layout_width="229dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="18dp"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/profilePic3"
+        app:layout_constraintEnd_toStartOf="@+id/profilePic3"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

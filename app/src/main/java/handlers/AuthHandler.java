@@ -122,12 +122,18 @@ public class AuthHandler {
     }
 
     public void SignInGoogle (){
+
     }
 
-    public FirebaseUser getUser (){
+    public static FirebaseUser getUser (){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user;
     }
+
+    public void ChangePhoneNumber(String PhoneNumber, Context context){
+
+    }
+
 
     public void RecoverPassword (EditText email, final Context context){
         String email_aux = email.getText().toString().trim();
