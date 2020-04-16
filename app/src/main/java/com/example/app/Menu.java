@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import handlers.AuthHandler;
 
@@ -15,6 +16,7 @@ public class Menu extends AppCompatActivity {
     private Button HiredServicesButton;
     private Button LogOutButton;
     private AuthHandler authHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
