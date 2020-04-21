@@ -34,5 +34,7 @@ public class Register extends AppCompatActivity{
                 authHandler.CreateUser(username, email, password, getApplicationContext());
             }
         });
+
+
     }
 }

@@ -24,6 +24,7 @@ public class Profile extends AppCompatActivity {
     private TextView PhoneNumber;
     private TextView Email;
     private TextView Username;
+    private AuthHandler authHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class Profile extends AppCompatActivity {
         PhoneNumber = findViewById(R.id.phoneNumber);
         Email = findViewById(R.id.email);
         Username = findViewById(R.id.username);
+        authHandler = new AuthHandler();
 
         PhoneNumber.setText("worked1st");
 
@@ -55,6 +57,13 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent (Profile.this, ChangePassword.class);
                 startActivity(i);
+            }
+        });
+
+        ChangeEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //authHandler.ChangeEmail(Email, getApplicationContext());
             }
         });
 
