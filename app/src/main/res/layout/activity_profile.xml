@@ -10,38 +10,41 @@
         android:id="@+id/profilePic"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/my_profile_picture"
         app:layout_constraintBottom_toTopOf="@+id/currentRating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.1"
         app:srcCompat="@drawable/icon_profile" />
 
-    <RatingBar
-        android:id="@+id/currentRating"
-        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:isIndicator="true"
+        android:layout_marginTop="276dp"
+        android:lineSpacingExtra="0sp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/currentRating"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.489" />
 
     <Button
         android:id="@+id/changeUsernameButton"
         style="@android:style/Widget.Button.Small"
-        android:layout_width="160dp"
+        android:layout_width="180dp"
         android:layout_height="40dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="308dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#64B5F6"
         android:lineSpacingExtra="0sp"
-        android:lines="1"
+        android:lines="2"
         android:text="@string/change_username"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -49,20 +52,18 @@
         android:textIsSelectable="false"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/username"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <Button
         android:id="@+id/changeEmailButton"
         style="@android:style/Widget.Button.Small"
-        android:layout_width="160dp"
+        android:layout_width="180dp"
         android:layout_height="40dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         android:backgroundTint="#64B5F6"
         android:lineSpacingExtra="0sp"
+        android:lines="2"
         android:text="@string/change_email"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -71,71 +72,56 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/changePhoneNumberButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/email"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changeUsernameButton"
-        app:layout_constraintVertical_bias="0.537" />
-
-    <TextView
-        android:id="@+id/phoneNumber"
-        android:layout_width="180dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="232dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/changePhoneNumberButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginEnd="7dp"
-        android:lineSpacingExtra="0sp"
-        android:textAlignment="textStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toStartOf="@+id/changeUsernameButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="7dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/phoneNumber"
-        app:layout_constraintEnd_toStartOf="@+id/changeEmailButton"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.496" />
 
     <Button
         android:id="@+id/changePhoneNumberButton"
         style="@android:style/Widget.Button.Small"
-        android:layout_width="160dp"
+        android:layout_width="180dp"
         android:layout_height="40dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="220dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#64B5F6"
         android:lineSpacingExtra="0sp"
+        android:lines="2"
         android:text="@string/change_contact"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textIsSelectable="false"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/phoneNumber" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="350dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="280dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePic" />
 
     <Button
         android:id="@+id/deleteAccountButton"
@@ -168,5 +154,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changePhoneNumberButton"
         app:layout_constraintVertical_bias="1.0" />
+
+    <RatingBar
+        android:id="@+id/currentRating"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:isIndicator="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

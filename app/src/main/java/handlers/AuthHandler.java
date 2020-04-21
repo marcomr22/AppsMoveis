@@ -26,14 +26,17 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
+import models.User;
+
 public class AuthHandler {
     private static final String TAG = "FireBaseHandler";
-
+    private String my_username;
     private FirebaseAuth mAuth;
 
-    public void CreateUser(EditText email, EditText password, final Context context){
-        String email_aux = email.getText().toString().trim();
+    public void CreateUser(EditText username, EditText email, EditText password, final Context context){
+        final String email_aux = email.getText().toString().trim();
         String password_aux = password.getText().toString().trim();
+        final String username_aux = username.getText().toString().trim();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -75,6 +78,7 @@ public class AuthHandler {
                             }
                         }
                     });
+
                 }
                 else {
                     Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -88,6 +92,8 @@ public class AuthHandler {
         String email_aux = email.getText().toString().trim();
         String password_aux = password.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
+
+        final User user = new User(mAuth.getUid(), my_username, email_aux,"");
 
         if (email_aux.isEmpty()){
             email.setError("Please enter an email");
@@ -110,6 +116,7 @@ public class AuthHandler {
                         Intent i = new Intent(context, Menu.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(i);
+                        FirestoreHandler.saveUser(user);
                     } else {
                         Toast.makeText(context, "Please verify your email", Toast.LENGTH_SHORT).show();
                     }
