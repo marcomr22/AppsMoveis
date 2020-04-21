@@ -93,7 +93,7 @@ public class AuthHandler {
         String password_aux = password.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
 
-        final User user = new User(mAuth.getUid(), my_username, email_aux,"");
+        final User user = new User(mAuth.getUid(), my_username, email_aux,"", 0.0, "");
 
         if (email_aux.isEmpty()){
             email.setError("Please enter an email");

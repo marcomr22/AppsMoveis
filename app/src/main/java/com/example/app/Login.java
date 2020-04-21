@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 
 import java.util.Arrays;
+import java.util.List;
 
 import handlers.AuthHandler;
 import handlers.FirestoreHandler;
@@ -28,7 +29,21 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FirestoreHandler.saveAdvert(new Advert("aid0", "uid0", Advert.Category.CARPENTRY, "test", 50, true, Arrays.asList("asdf")));
+//        FirestoreHandler.saveAdvert(new Advert("aid0", "uid0", Advert.Category.CARPENTRY, "test", 50, true, Arrays.asList("asdf")));
+//        FirestoreHandler.saveAdvert(new Advert("aid1", "uid0", Advert.Category.CARPENTRY, "test5", 50, true, Arrays.asList("asdf")));
+        FirestoreHandler fh = new FirestoreHandler(this, Advert.Category.CARPENTRY, FirestoreHandler.OrderBy.Price);
+        fh.getAdverts(new FirestoreHandler.QueryCallback() {
+            @Override
+            public void onCallback(List<Advert> list) {
+                Log.d("test", list.toString());
+            }
+        });
+        fh.getAdverts(new FirestoreHandler.QueryCallback() {
+            @Override
+            public void onCallback(List<Advert> list) {
+                Log.d("test", list.toString());
+            }
+        });
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
         AuthHandler = new AuthHandler();
