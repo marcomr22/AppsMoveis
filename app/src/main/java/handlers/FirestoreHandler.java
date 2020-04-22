@@ -93,7 +93,7 @@ public class FirestoreHandler {
     public static void saveAdvert(Advert advert){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        DocumentReference doc = db.document("users/"+advert.getOwnerID()+"/adverts/"+ advert.getId());
+        DocumentReference doc = db.document("/user/uid0/adverts/"+ advert.getId());
         doc.set(advert)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

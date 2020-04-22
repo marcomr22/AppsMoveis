@@ -33,10 +33,9 @@ public class AuthHandler {
     private String my_username;
     private FirebaseAuth mAuth;
 
-    public void CreateUser(EditText username, EditText email, EditText password, final Context context){
+    public void CreateUser(EditText email, EditText password, final Context context){
         final String email_aux = email.getText().toString().trim();
         String password_aux = password.getText().toString().trim();
-        final String username_aux = username.getText().toString().trim();
 
         mAuth = FirebaseAuth.getInstance();
 

@@ -31,7 +31,7 @@ public class Register extends AppCompatActivity{
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authHandler.CreateUser(username, email, password, getApplicationContext());
+                authHandler.CreateUser(email, password, getApplicationContext());
             }
         });
     }
