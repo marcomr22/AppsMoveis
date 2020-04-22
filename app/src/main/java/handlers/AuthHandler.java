@@ -14,8 +14,11 @@ import com.example.app.Login;
 import com.example.app.Menu;
 import com.example.app.PasswordRecovery;
 import com.example.app.Profile;
+import com.example.app.R;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -29,7 +32,7 @@ import java.util.Objects;
 import models.User;
 
 public class AuthHandler {
-    private static final String TAG = "FireBaseHandler";
+    private static final String TAG = "AuthHandler";
     private String my_username;
     private FirebaseAuth mAuth;
 
@@ -115,7 +118,7 @@ public class AuthHandler {
                         Intent i = new Intent(context, Menu.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(i);
-                        FirestoreHandler.saveUser(user);
+//                        FirestoreHandler.saveUser(user);
                     } else {
                         Toast.makeText(context, "Please verify your email", Toast.LENGTH_SHORT).show();
                     }
@@ -127,17 +130,52 @@ public class AuthHandler {
         });
     }
 
-    public void SignInGoogle (){
-
-    }
-
     public static FirebaseUser getUser (){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user;
     }
 
     public void ChangePhoneNumber(String PhoneNumber, Context context){
+    }
 
+    public void ChangeEmail (EditText email, final Context context){
+        mAuth = FirebaseAuth.getInstance();
+        String email_aux = email.getText().toString().trim();
+
+        if (email_aux.isEmpty()){
+            email.setError("Please enter an email");
+            email.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email_aux).matches()){
+            email.setError("Please enter a valid email");
+            email.requestFocus();
+            return;
+        }
+
+        mAuth.getCurrentUser().updateEmail(email_aux).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                SignOut(context);
+                                Intent i = new Intent(context, Login.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
+                                Toast.makeText(context, "Please check your email for verification and login again", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
 
