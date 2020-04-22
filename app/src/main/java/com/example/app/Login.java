@@ -46,24 +46,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        FirestoreHandler.saveAdvert(new Advert("aid0", "uid0", Advert.Category.CARPENTRY, "test5", 50, true, Arrays.asList("asdf"), 10, 5));
-
-        final FirestoreHandler fh = new FirestoreHandler(this, Advert.Category.CARPENTRY);
-        fh.getAdverts(new FirestoreHandler.QueryCallback() {
-            @Override
-            public void onCallback(List<Advert> list) {
-                Log.d("test1", list.toString());
-
-                fh.getAdverts(new FirestoreHandler.QueryCallback() {
-                    @Override
-                    public void onCallback(List<Advert> list) {
-                        Log.d("tes2t", list.toString());
-                    }
-                });
-            }
-        });
-
-
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
