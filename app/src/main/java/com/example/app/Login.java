@@ -29,11 +29,11 @@ import handlers.AuthHandler;
 import handlers.FirestoreHandler;
 import models.User;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity{
     private static final String TAG = "Google Sign In";
     private EditText email;
     private EditText password;
-    private AuthHandler AuthHandler;
+    private AuthHandler authHandler;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
 
@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
 
         email = findViewById(R.id.Email);
         password = findViewById(R.id.Password);
-        AuthHandler = new AuthHandler();
+        authHandler = new AuthHandler();
 
         Button LoginButton = findViewById(R.id.Login);
         Button RegisterButton = findViewById(R.id.Register);
@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity {
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AuthHandler.SignInUser(email, password, getApplicationContext());
+                authHandler.SignInUser(email, password, getApplicationContext());
             }
         });
 
@@ -96,6 +96,7 @@ public class Login extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
         if (AuthHandler.getUser() != null){
             Intent i = new Intent(Login.this, Menu.class);
             startActivity(i);
@@ -144,6 +145,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            Log.d(TAG, FirebaseAuth.getInstance().getCurrentUser().getUid());
                             Intent i = new Intent(getApplicationContext(), Menu.class);
                             startActivity(i);
                         } else {

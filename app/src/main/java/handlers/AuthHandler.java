@@ -68,6 +68,11 @@ public class AuthHandler {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(context, "SignUp successful, please check your email for verification  ", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG,mAuth.getCurrentUser().getUid());
+                                mAuth.signOut();
+                                Intent i = new Intent(context, Login.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
                             } else {
                                 Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -111,7 +116,6 @@ public class AuthHandler {
                         Intent i = new Intent(context, Menu.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(i);
-//                        FirestoreHandler.saveUser(user);
                     } else {
                         Toast.makeText(context, "Please verify your email", Toast.LENGTH_SHORT).show();
                     }
@@ -126,9 +130,6 @@ public class AuthHandler {
     public static FirebaseUser getUser (){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user;
-    }
-
-    public void ChangePhoneNumber(String PhoneNumber, Context context){
     }
 
     public void deleteUser(final Context context) {
@@ -295,32 +296,6 @@ public class AuthHandler {
             });
         }
     }
-
-/*        public void firebaseAuthWithGoogle(GoogleSignInAccount acct, final Context context) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        ImageButton SignInGoogle = (ImageButton) SignInGoogle.findViewById(R.id.LoginGoogle);
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        FirebaseAuth.getInstance().signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            Intent i = new Intent(context, Menu.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(i);
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(SignInGoogle, "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }*/
-
 
     private void ReAuthenticate (FirebaseUser user, String password){
 
