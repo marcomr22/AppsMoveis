@@ -148,6 +148,10 @@ public class Login extends AppCompatActivity{
                             Log.d(TAG, FirebaseAuth.getInstance().getCurrentUser().getUid());
                             Intent i = new Intent(getApplicationContext(), Menu.class);
                             startActivity(i);
+                            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                            final User user = new User(uid, "", email,"", 0.0, "");
+                            FirestoreHandler.saveUser(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());

@@ -26,7 +26,7 @@ import models.User;
 
 public class AuthHandler {
     private static final String TAG = "AuthHandler";
-    private String my_username;
+    private String my_username = "";
     private FirebaseAuth mAuth;
 
     public void CreateUser(EditText email, EditText password, final Context context){
@@ -78,7 +78,8 @@ public class AuthHandler {
                             }
                         }
                     });
-
+                    final User user = new User(mAuth.getCurrentUser().getUid(), my_username, email_aux,"", 0.0, "");
+                    FirestoreHandler.saveUser(user);
                 }
                 else {
                     Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -93,7 +94,7 @@ public class AuthHandler {
         String password_aux = password.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
 
-        final User user = new User(mAuth.getUid(), my_username, email_aux,"", 0.0, "");
+
 
         if (email_aux.isEmpty()){
             email.setError("Please enter an email");
