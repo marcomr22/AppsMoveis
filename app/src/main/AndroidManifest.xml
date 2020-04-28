@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".re_authentication"></activity>
+        <activity android:name=".Re_Authentication"></activity>
         <activity android:name=".ServiceSettings" />
         <activity android:name=".RateService" />
         <activity android:name=".HiredServices" />

@@ -26,14 +26,19 @@ import models.User;
 
 public class AuthHandler {
     private static final String TAG = "AuthHandler";
-    private String my_username = "";
     private FirebaseAuth mAuth;
 
-    public void CreateUser(EditText email, EditText password, final Context context){
+    public void CreateUser(final EditText username, final EditText email, final EditText password, final Context context){
         final String email_aux = email.getText().toString().trim();
         String password_aux = password.getText().toString().trim();
+        final String username_aux = username.getText().toString().trim();
 
         mAuth = FirebaseAuth.getInstance();
+
+        if (username_aux.isEmpty()){
+            username.setError("Please enter an username");
+            username.requestFocus();
+        }
 
         if (email_aux.isEmpty()){
             email.setError("Please enter an email");
@@ -69,6 +74,9 @@ public class AuthHandler {
                             if (task.isSuccessful()) {
                                 Toast.makeText(context, "SignUp successful, please check your email for verification  ", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG,mAuth.getCurrentUser().getUid());
+                                username.setText("");
+                                email.setText("");
+                                password.setText("");
                                 mAuth.signOut();
                                 Intent i = new Intent(context, Login.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -78,7 +86,7 @@ public class AuthHandler {
                             }
                         }
                     });
-                    final User user = new User(mAuth.getCurrentUser().getUid(), my_username, email_aux,"", 0.0, "");
+                    final User user = new User(mAuth.getCurrentUser().getUid(), username_aux, email_aux,"", 0.0, "");
                     FirestoreHandler.saveUser(user);
                 }
                 else {
@@ -88,13 +96,11 @@ public class AuthHandler {
         });
     }
 
-    public void SignInUser (EditText email, EditText password, final Context context){
+    public void SignInUser (final EditText email, final EditText password, final Context context){
 
         String email_aux = email.getText().toString().trim();
         String password_aux = password.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
-
-
 
         if (email_aux.isEmpty()){
             email.setError("Please enter an email");
@@ -194,23 +200,10 @@ public class AuthHandler {
     }
 
 
-    public void RecoverPassword (EditText email, final Context context){
-        String email_aux = email.getText().toString().trim();
+    public void RecoverPassword (String email, final Context context){
         mAuth = FirebaseAuth.getInstance();
 
-        if (email_aux.isEmpty()){
-            email.setError("Please insert your email");
-            email.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email_aux).matches()) {
-            email.setError("Please enter a valid email");
-            email.requestFocus();
-            return;
-        }
-
-        mAuth.sendPasswordResetEmail(email_aux).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
@@ -275,40 +268,48 @@ public class AuthHandler {
             NewPassword2.requestFocus();
         }
 
-        if (user != null){
-            ReAuthenticate(user, OldPasswordAux);
-            user.updatePassword(NewPasswordAux).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        OldPassword.setText("");
-                        NewPassword.setText("");
-                        NewPassword2.setText("");
-                        Toast.makeText(context, "Password change successful", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(context, Profile.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(i);
-                    }
-
-                    else{
-                        Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+        user.updatePassword(NewPasswordAux).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    OldPassword.setText("");
+                    NewPassword.setText("");
+                    NewPassword2.setText("");
+                    Toast.makeText(context, "Password change successful", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(context, Profile.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
                 }
-            });
-        }
+
+                else{
+                    Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
-    private void ReAuthenticate (FirebaseUser user, String password){
+    public void ReAuthenticate (final EditText password, final Context context){
+        FirebaseUser user = getUser();
+        String password_aux = password.getText().toString().trim();
 
-        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), password);
+        if (password_aux.isEmpty()) {
+            password.setError("Please enter a password");
+            password.requestFocus();
+            return;
+        }
+
+        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), password_aux);
 
         user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     Log.d(TAG, "User re-authenticated.");
+                    password.setText("");
+                    Intent i = new Intent(context, Profile.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
                 }
-
                 else{
                     Log.d(TAG, task.getException().getMessage());
                 }
