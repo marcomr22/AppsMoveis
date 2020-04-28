@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Top Task</string>
-    <string name="app_icon"/>
+    <string name="app_icon" />
     <string name="title_activity_main">MainActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -43,7 +43,7 @@
     <string name="email">E-mail</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
-    <string name="my_profile_picture"/>
+    <string name="my_profile_picture" />
     <string name="rate_opinion_hint">"Give your opinion to help other users"</string>
     <string name="rate_this_service">Please rate this service</string>
     <string name="hint_old_password">Old Password</string>
@@ -55,7 +55,7 @@
     <string name="delete">Delete</string>
     <string name="profile_settings">Profile Settings</string>
     <string name="credits">Credits</string>
-    <string name="google_icon"/>
+    <string name="google_icon" />
     <string name="category_1">Carpentry</string>
     <string name="category_2">Mechanics</string>
     <string name="category_3">Technology</string>
@@ -73,6 +73,7 @@
     <string name="service_title_hint">Write a title for your service</string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="service_picture">Service Picture</string>
+    <string name="type_password">In order to change your profile settings, please type your password</string>
 
 
 </resources>
