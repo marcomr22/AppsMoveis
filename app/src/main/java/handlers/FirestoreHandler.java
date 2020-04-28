@@ -5,8 +5,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -79,6 +81,21 @@ public class FirestoreHandler {
                         Log.w(TAG_READ_FAILURE, "User from db");
                     }
                 });
+    }
+
+    public static void deleteUser(final String uID){
+        FirebaseFirestore.getInstance().collection("users").document(uID)
+                .delete().addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG_WRITE_FAILURE, "Error deleting user");
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG_WRITE_SUCCESSFUL, uID + " user deleted");
+            }
+        });
     }
 
     public static void saveAdvert(Advert advert){
