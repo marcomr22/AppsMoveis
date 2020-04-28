@@ -9,13 +9,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import handlers.AuthHandler;
 import handlers.FirestoreHandler;
 import models.User;
 
 public class Profile extends AppCompatActivity {
+    private static final String TAG = "Profile";
     private Button ChangeUsernameButton;
     private Button ChangeEmailButton;
     private Button ChangeContactButton;
@@ -24,6 +29,7 @@ public class Profile extends AppCompatActivity {
     private TextView PhoneNumber;
     private TextView Email;
     private TextView Username;
+    private AuthHandler authHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +44,14 @@ public class Profile extends AppCompatActivity {
         PhoneNumber = findViewById(R.id.phoneNumber);
         Email = findViewById(R.id.email);
         Username = findViewById(R.id.username);
+        authHandler = new AuthHandler();
 
         PhoneNumber.setText("worked1st");
+
+        if (FirebaseAuth.getInstance().getCurrentUser().getIdToken(false).getResult().getSignInProvider().equals("google.com")) {
+            ChangeEmailButton.setVisibility(View.GONE);
+            ChangePasswordButton.setVisibility(View.GONE);
+        }
 
         FirestoreHandler.getUser(AuthHandler.getUser().getUid(), new FirestoreHandler.UserCallback() {
             @Override
@@ -58,5 +70,18 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        ChangeEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //authHandler.ChangeEmail(EditText) Email, getApplicationContext());
+            }
+        });
+
+        DeleteAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                authHandler.deleteUser(getApplicationContext());
+            }
+        });
     }
 }

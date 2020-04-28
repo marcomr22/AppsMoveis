@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import handlers.AuthHandler;
+import handlers.FirestoreHandler;
+import models.Advert;
 
 public class Menu extends AppCompatActivity {
     private Button ProfileSettingsButton;
@@ -46,5 +48,6 @@ public class Menu extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 }
