@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ServiceSettings"></activity>
+        <activity android:name=".re_authentication"></activity>
+        <activity android:name=".ServiceSettings" />
         <activity android:name=".RateService" />
         <activity android:name=".HiredServices" />
         <activity android:name=".PasswordRecovery" />
@@ -19,11 +20,11 @@
         <activity android:name=".Menu" />
         <activity android:name=".Register" />
         <activity android:name=".Profile" />
-        <activity android:name=".CategoryList"></activity>
-        <activity android:name=".Comments"></activity>
-        <activity android:name=".FullListShort"></activity>
-        <activity android:name=".MyServices"></activity>
-        <activity android:name=".Service"></activity>
+        <activity android:name=".CategoryList" />
+        <activity android:name=".Comments" />
+        <activity android:name=".FullListShort" />
+        <activity android:name=".MyServices" />
+        <activity android:name=".Service" />
         <activity
             android:name=".Login"
             android:label="@string/app_name"
