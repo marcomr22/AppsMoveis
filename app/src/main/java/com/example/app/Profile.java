@@ -46,8 +46,6 @@ public class Profile extends AppCompatActivity {
         Username = findViewById(R.id.username);
         authHandler = new AuthHandler();
 
-        PhoneNumber.setText("worked1st");
-
         if (FirebaseAuth.getInstance().getCurrentUser().getIdToken(false).getResult().getSignInProvider().equals("google.com")) {
             ChangeEmailButton.setVisibility(View.GONE);
             ChangePasswordButton.setVisibility(View.GONE);
@@ -57,7 +55,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onCallback(User user) {
                 Username.setText(user.getName());
-                PhoneNumber.setText("worked2nd");
+                PhoneNumber.setText(user.getNumber());
                 Email.setText(user.getEmail());
             }
         });

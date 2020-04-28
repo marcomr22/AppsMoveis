@@ -28,9 +28,10 @@ public class AuthHandler {
     private static final String TAG = "AuthHandler";
     private FirebaseAuth mAuth;
 
-    public void CreateUser(final EditText username, final EditText email, final EditText password, final Context context){
+    public void CreateUser(final EditText username, final EditText email, EditText phoneNumber, final EditText password, final Context context){
         final String email_aux = email.getText().toString().trim();
         String password_aux = password.getText().toString().trim();
+        final String phoneNumber_aux = phoneNumber.getText().toString().trim();
         final String username_aux = username.getText().toString().trim();
 
         mAuth = FirebaseAuth.getInstance();
@@ -50,6 +51,16 @@ public class AuthHandler {
             email.setError("Please enter a valid email");
             email.requestFocus();
             return;
+        }
+
+        if (phoneNumber_aux.isEmpty()){
+            phoneNumber.setError("Please insert your phone number");
+            phoneNumber.requestFocus();
+        }
+
+        if(!Patterns.PHONE.matcher(phoneNumber_aux).matches()){
+            phoneNumber.setError("Please insert a valid phone number");
+            phoneNumber.requestFocus();
         }
 
         if (password_aux.isEmpty()) {
@@ -86,7 +97,7 @@ public class AuthHandler {
                             }
                         }
                     });
-                    final User user = new User(mAuth.getCurrentUser().getUid(), username_aux, email_aux,"", 0.0, "");
+                    final User user = new User(mAuth.getCurrentUser().getUid(), username_aux, email_aux,"", 0.0, phoneNumber_aux);
                     FirestoreHandler.saveUser(user);
                 }
                 else {
