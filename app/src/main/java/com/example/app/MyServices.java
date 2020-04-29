@@ -41,6 +41,8 @@ public class MyServices  extends AppCompatActivity {
 
         ItemAdapter adapter = new ItemAdapter(this, itemsList);
 
+        addNew = findViewById(R.id.button8);
+
         addNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
