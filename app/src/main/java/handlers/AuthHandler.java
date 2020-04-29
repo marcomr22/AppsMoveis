@@ -154,10 +154,12 @@ public class AuthHandler {
         Log.d(TAG, "Delete User");
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        final String uid_aux = user.getUid();
         user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    FirestoreHandler.deleteUser(uid_aux);
                     Toast.makeText(context, "User deleted successfully", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, Login.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

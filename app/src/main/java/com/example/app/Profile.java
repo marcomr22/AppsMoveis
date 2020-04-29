@@ -79,6 +79,8 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 authHandler.deleteUser(getApplicationContext());
+                Intent i = new Intent (Profile.this, Login.class);
+                startActivity(i);
             }
         });
     }

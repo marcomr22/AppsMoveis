@@ -1,6 +1,9 @@
 package com.example.app;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +17,7 @@ import recycleView_cardView.ItemModel;
 public class MyServices  extends AppCompatActivity {
 
     RecyclerView recyclerView;
-
+    private Button addNew;
     ArrayList<ItemModel> itemsList;
 
     @Override
@@ -31,10 +34,20 @@ public class MyServices  extends AppCompatActivity {
         itemsList.add(new ItemModel(R.drawable.ic_launcher_foreground,"terceirrrrrra","250"));
 
 
+
         LinearLayoutManager layoutManager = new LinearLayoutManager( this);
         RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
         recyclerView.setLayoutManager(rvLiLayoutManager);
 
         ItemAdapter adapter = new ItemAdapter(this, itemsList);
+
+        addNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MyServices.this, ServiceSettings.class);
+                i.putExtra("New Service",1);
+                startActivity(i);
+            }
+        });
     }
 }
