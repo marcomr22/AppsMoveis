@@ -88,7 +88,7 @@ public class FirestoreHandler {
                 .delete().addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG_WRITE_FAILURE, "Error deleting user");
+                Log.w(TAG_WRITE_FAILURE, "Error deleting user" + uID);
             }
         }).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -115,6 +115,21 @@ public class FirestoreHandler {
                         Log.w(TAG_WRITE_FAILURE, "Advert failed write on db.");
                     }
                 });
+    }
+
+    public static void deleteAdvert(final Advert advert){
+        FirebaseFirestore.getInstance().document("/users/"+ advert.getOwnerID() + "/adverts/"+ advert.getId())
+                .delete().addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG_WRITE_FAILURE, "Error deleting Advert" + advert.toString());
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG_WRITE_SUCCESSFUL, advert.toString() + " deleted");
+            }
+        });
     }
 
     public interface QueryCallback{
