@@ -13,6 +13,7 @@ public class Register extends AppCompatActivity{
     private EditText username;
     private EditText email;
     private EditText password;
+    private EditText phoneNumber;
     private Button RegisterButton;
     private AuthHandler authHandler;
 
@@ -22,7 +23,9 @@ public class Register extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        username = findViewById(R.id.username);
         email = findViewById(R.id.email);
+        phoneNumber = findViewById(R.id.phone);
         password = findViewById(R.id.password);
         authHandler = new AuthHandler();
 
@@ -31,7 +34,7 @@ public class Register extends AppCompatActivity{
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authHandler.CreateUser(email, password, getApplicationContext());
+                authHandler.CreateUser(username, email, phoneNumber, password, getApplicationContext());
             }
         });
 
