@@ -46,6 +46,8 @@ public class MyServices  extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(rvLiLayoutManager);
 
+        addNew = findViewById(R.id.button8);
+
         addNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

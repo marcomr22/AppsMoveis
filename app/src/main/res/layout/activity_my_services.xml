@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MyServices">
@@ -8,15 +10,12 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/button8"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="46dp"
-        android:layout_marginBottom="100dp"
-        android:background="#3F51B5"
-        android:clipToPadding="false"
-        android:visibility="visible"
-        tools:visibility="visible">
+        android:layout_height="540dp"
+        android:clipToPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
@@ -30,21 +29,26 @@
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginEnd="131dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
-        android:text="@string/add_new_service" />
+        android:text="@string/add_new_service"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:text="@string/my_Services" />
+        android:lineSpacingExtra="20sp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:text="@string/my_Services"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
