@@ -2,21 +2,21 @@ package recycleView_cardView;
 
 public class ItemModel {
 
-    private int image;
+    private String image;
     private String description;
     private String price;
 
-    public ItemModel(int image, String description, String price) {
+    public ItemModel(String image, String description, String price) {
         this.image = image;
         this.description = description;
         this.price = price;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

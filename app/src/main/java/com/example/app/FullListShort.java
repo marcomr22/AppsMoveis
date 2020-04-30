@@ -21,7 +21,7 @@ public class FullListShort extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_list_short);
-
+/*
         recyclerView = findViewById(R.id.rv);
 
         itemsList = new ArrayList<>();
@@ -38,5 +38,7 @@ public class FullListShort extends AppCompatActivity {
         ItemAdapter adapter = new ItemAdapter(this, itemsList);
 
         recyclerView.setAdapter(adapter);
+    */
     }
+
 }

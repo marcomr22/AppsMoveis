@@ -21,7 +21,7 @@ public class CategoryList  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_list);
-
+    /*
         recyclerView = findViewById(R.id.rv);
 
         itemsList = new ArrayList<>();
@@ -39,5 +39,6 @@ public class CategoryList  extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
+        */
     }
 }

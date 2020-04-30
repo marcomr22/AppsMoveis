@@ -21,7 +21,7 @@ public class Comments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
-
+/*
         recyclerView = findViewById(R.id.rv);
 
         itemsList = new ArrayList<>();
@@ -38,6 +38,6 @@ public class Comments extends AppCompatActivity {
         ItemAdapter adapter = new ItemAdapter(this, itemsList);
 
         recyclerView.setAdapter(adapter);
-
+*/
     }
 }

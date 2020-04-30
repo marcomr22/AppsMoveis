@@ -6,7 +6,16 @@ import java.util.List;
 public class Advert {
 
     public enum Category {
-        CARPENTRY, MECHANICS, TECHNOLOGY, COOKING, CHILD, PET, EVENT, HEALTH, OTHER;
+        CARPENTRY(0), MECHANICS(1), TECHNOLOGY(2), COOKING(3), CHILD(4), PET(5), EVENT(6), HEALTH(7), OTHER(8);
+        public int value;
+
+        Category(int n){
+            value = n;
+        }
+
+        public static int getValue(Category c){
+            return c.value;
+        }
 
         public static Category convert(String s){
             switch (s) {

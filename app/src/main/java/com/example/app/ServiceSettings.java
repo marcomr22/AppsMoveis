@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
 import com.google.common.hash.HashCode;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class ServiceSettings extends AppCompatActivity {
     private  int rating = 0;
     private int voteCount = 0;
     private String advertId = "";
+    private ArrayList<ImageView> images;
     //Missing to check if a service exists and needs to be checked or if it is a new one
     //Missing buttons
 
@@ -64,6 +66,12 @@ public class ServiceSettings extends AppCompatActivity {
         pic4 = findViewById(R.id.pic4);
         pic5 = findViewById(R.id.pic5);
         pic6 = findViewById(R.id.pic6);
+        images.add(pic1);
+        images.add(pic2);
+        images.add(pic3);
+        images.add(pic4);
+        images.add(pic5);
+        images.add(pic6);
         confirm = findViewById(R.id.confirmService);
         delete = findViewById(R.id.deleteService);
         cancel = findViewById(R.id.cancelService);
@@ -74,14 +82,10 @@ public class ServiceSettings extends AppCompatActivity {
         if(NewService == 0) {
 
             int advertId = intent.getIntExtra("ServiceID", -1);
-
-            //Get service from Database from na id
-            //Update the values of the UI
-
+            loadAdvert();
         } else {
             advertId = generateAID();
         }
-
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,9 +157,31 @@ public class ServiceSettings extends AppCompatActivity {
 
 
         List<String> URLS = new ArrayList<String>();
+        //Load das URL para cada Imagem
+
         Advert advert = new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, description.getText().toString(), Integer.parseInt(price.getText().toString()), hourlyRate.isChecked(),URLS,rating,voteCount);
         return advert;
     }
+
+    private void loadAdvert(){
+
+        //Load 1 advert
+        Advert a = new Advert();
+
+        description.setText(a.getDescription());
+        price.setText(String.valueOf(a.getPrice()));
+        hourlyRate.setChecked(a.isHourly());
+        serviceCategories.check(Category.getValue(a.getCategory()));
+
+        for(int i = 0; i < a.getImagesURL().size(); i++) {
+            Glide.with(ServiceSettings.this).asBitmap().load(a.getImagesURL().get(i)).into(images.get(i));
+        }
+
+        rating = a.getRating();
+        voteCount = a.getVoteCount();
+
+    }
+
 
 
 }
