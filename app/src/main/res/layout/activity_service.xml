@@ -7,6 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".Service">
 
+    <ImageButton
+        android:id="@+id/profilePic5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="#00FFFFFF"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_profile"
+        app:layout_constraintBottom_toTopOf="@+id/profilePic2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/todo" />
+
     <ImageView
         android:id="@+id/leftArrow"
         android:layout_width="30dp"
@@ -19,7 +36,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
         app:layout_constraintVertical_bias="0.502"
-        app:srcCompat="@android:drawable/arrow_up_float" />
+        app:srcCompat="@android:drawable/arrow_up_float"
+        android:contentDescription="@string/todo" />
 
     <Button
         android:id="@+id/comments"
@@ -77,20 +95,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.107"
-        app:srcCompat="@drawable/icon_profile" />
-
-    <ImageView
-        android:id="@+id/profilePic3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:contentDescription="@string/my_profile_picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_profile" />
+        app:srcCompat="@drawable/icon_profile"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/username2"
@@ -175,10 +181,12 @@
         android:id="@+id/Search"
         android:layout_width="229dp"
         android:layout_height="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toTopOf="@+id/profilePic2"
-        app:layout_constraintEnd_toStartOf="@+id/profilePic3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/rightArrow"
@@ -191,7 +199,8 @@
         app:layout_constraintHorizontal_bias="0.918"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/serviceDescription"
-        app:srcCompat="@android:drawable/arrow_down_float" />
+        app:srcCompat="@android:drawable/arrow_down_float"
+        android:contentDescription="@string/todo" />
 
     <ImageView
         android:id="@+id/servicePic"

@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".FullListShort">
 
+    <ImageButton
+        android:id="@+id/profilePic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="32dp"
+        android:background="#00FFFFFF"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_profile"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
@@ -179,32 +192,17 @@
 
     </GridLayout>
 
-    <ImageView
-        android:id="@+id/profilePic3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="30dp"
-        android:adjustViewBounds="true"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_profile" />
-
 
     <SearchView
         android:id="@+id/searchView2"
         android:layout_width="229dp"
         android:layout_height="32dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginEnd="45dp"
         app:layout_anchorGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/profilePic3"
-        app:layout_constraintEnd_toStartOf="@+id/profilePic3"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintEnd_toStartOf="@+id/profilePic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

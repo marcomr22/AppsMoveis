@@ -74,6 +74,6 @@
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="service_picture">Service Picture</string>
     <string name="type_password">In order to change your profile settings, please type your password</string>
-
+    <string name="todo">TODO</string>
 
 </resources>
