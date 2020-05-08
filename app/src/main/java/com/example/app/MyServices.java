@@ -31,8 +31,8 @@ public class MyServices  extends AppCompatActivity {
         itemsList = new ArrayList<>();
         ArrayList<String> strings = new ArrayList<String>();
         strings.add("https://gd-lisboa.sfo2.cdn.digitaloceanspaces.com/2016/08/pontadapiedadeemlagos.jpg");
-        itemsList.add(new Advert("123","123425", Advert.Category.OTHER,"Descrição do produto 1",10,false,strings,0,12));
-        itemsList.add(new Advert("2","1234q312325", Advert.Category.OTHER,"Descrição do produto 2",20,false,strings,10,3));
+        itemsList.add(new Advert("123","123425", Advert.Category.CARPENTRY,"Descrição do produto 1",10,false,strings,0,12));
+        itemsList.add(new Advert("2","1234q312325", Advert.Category.OTHER,"Descrição do produto 2",20,true,strings,10,3));
         itemsList.add(new Advert("33","1111123425", Advert.Category.OTHER,"Descrição do produto 3",30,false,strings,2,90));
 
 
@@ -42,7 +42,7 @@ public class MyServices  extends AppCompatActivity {
         RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
 
 
-        ItemAdapter adapter = new ItemAdapter(this, itemsList);
+        ItemAdapter adapter = new ItemAdapter(this, itemsList, ServiceSettings.class);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(rvLiLayoutManager);
 

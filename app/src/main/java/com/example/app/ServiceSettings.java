@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -45,7 +46,7 @@ public class ServiceSettings extends AppCompatActivity {
     private int voteCount = 0;
     private String advertId = "";
     private ArrayList<ImageView> images;
-    //Missing to check if a service exists and needs to be checked or if it is a new one
+
     //Missing buttons
 
     @Override
@@ -53,13 +54,14 @@ public class ServiceSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_settings);
         Intent intent = getIntent();
-        int NewService = intent.getIntExtra("New Service",-1);
+        int NewService = intent.getIntExtra("New Service",0);
 
         title = findViewById(R.id.serviceTitle);
         description = findViewById(R.id.editText4);
         price = findViewById(R.id.price);
         hourlyRate = findViewById(R.id.hour_rate);
         serviceCategories = findViewById(R.id.service_categories);
+        /*
         pic1 = findViewById(R.id.pic1);
         pic2 = findViewById(R.id.pic2);
         pic3 = findViewById(R.id.pic3);
@@ -72,6 +74,8 @@ public class ServiceSettings extends AppCompatActivity {
         images.add(pic4);
         images.add(pic5);
         images.add(pic6);
+
+         */
         confirm = findViewById(R.id.confirmService);
         delete = findViewById(R.id.deleteService);
         cancel = findViewById(R.id.cancelService);
@@ -79,13 +83,16 @@ public class ServiceSettings extends AppCompatActivity {
 
 
         //In the case of loading an existing Service
+
         if(NewService == 0) {
 
-            int advertId = intent.getIntExtra("ServiceID", -1);
             loadAdvert();
+
         } else {
             advertId = generateAID();
         }
+
+
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +104,7 @@ public class ServiceSettings extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d("teste","category ID : " + serviceCategories.getCheckedRadioButtonId());
             }
         });
 
@@ -166,12 +173,13 @@ public class ServiceSettings extends AppCompatActivity {
     private void loadAdvert(){
 
         //Load 1 advert
-        Advert a = new Advert();
+        Advert a = getIntent().getParcelableExtra("Advert");
 
         description.setText(a.getDescription());
         price.setText(String.valueOf(a.getPrice()));
         hourlyRate.setChecked(a.isHourly());
-        serviceCategories.check(Category.getValue(a.getCategory()));
+        Log.d("teste", "loadAdvert: " + Category.getValue(a.getCategory()));
+        serviceCategories.check( Category.getValue(a.getCategory()));
 
         for(int i = 0; i < a.getImagesURL().size(); i++) {
             Glide.with(ServiceSettings.this).asBitmap().load(a.getImagesURL().get(i)).into(images.get(i));
@@ -181,6 +189,8 @@ public class ServiceSettings extends AppCompatActivity {
         voteCount = a.getVoteCount();
 
     }
+
+
 
 
 

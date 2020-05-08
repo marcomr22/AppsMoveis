@@ -6,25 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Profile">
 
-    <ImageView
-        android:id="@+id/profilePic"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/my_profile_picture"
-        app:layout_constraintBottom_toTopOf="@+id/currentRating"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        app:srcCompat="@drawable/icon_profile" />
-
     <EditText
         android:id="@+id/username"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
         android:autofillHints=""
         android:hint="@string/hint_username"
         android:inputType="text"
@@ -35,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/currentRating" />
 
     <Button
         android:id="@+id/changeUsernameButton"
@@ -52,6 +38,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textIsSelectable="false"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +105,6 @@
         android:id="@+id/phoneNumber"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
         android:autofillHints=""
         android:hint="@string/phone_number"
         android:inputType="number|phone"
@@ -128,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePic" />
+        tools:layout_editor_absoluteY="443dp" />
 
     <Button
         android:id="@+id/deleteAccountButton"
@@ -172,5 +158,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/currentRating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461"
+        app:srcCompat="@drawable/g1049"
+        tools:srcCompat="@drawable/icon_profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

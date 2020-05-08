@@ -1,6 +1,7 @@
 package recycleView_cardView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -16,7 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.app.MyServices;
 import com.example.app.R;
+import com.example.app.ServiceSettings;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,10 +33,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
 
     private Context mContext;
     private ArrayList<Advert> mList;
+    private Class nextActivityClass;
 
-    public ItemAdapter(Context context, ArrayList<Advert> list){
+    public ItemAdapter(Context context, ArrayList<Advert> list, Class nextActivityClass){
         mContext=context;
         mList=list;
+        this.nextActivityClass=nextActivityClass;
     }
 
     @NonNull
@@ -56,7 +61,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(mContext, "will load"+item.getId().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "will load"+item.getId().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, nextActivityClass);
+                intent.putExtra("Advert", item);
+                mContext.startActivity(intent);
+
             }
         });
 

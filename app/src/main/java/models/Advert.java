@@ -1,9 +1,14 @@
 package models;
 
-import java.util.Arrays;
+import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Advert {
+public class Advert implements Parcelable {
+
+
 
     public enum Category {
         CARPENTRY(0), MECHANICS(1), TECHNOLOGY(2), COOKING(3), CHILD(4), PET(5), EVENT(6), HEALTH(7), OTHER(8);
@@ -41,6 +46,7 @@ public class Advert {
         }
     }
 
+
     private String id;
     private String ownerID;
     private Category category;
@@ -50,6 +56,50 @@ public class Advert {
     private List<String> imagesURL;
     private int rating;
     private int voteCount;
+
+    protected Advert(Parcel in) {
+        id = in.readString();
+        ownerID = in.readString();
+        category = Category.valueOf(in.readString());
+        description = in.readString();
+        price = in.readInt();
+        hourly = in.readByte() != 0;
+        imagesURL = in.createStringArrayList();
+        rating = in.readInt();
+        voteCount = in.readInt();
+    }
+
+    public static final Creator<Advert> CREATOR = new Creator<Advert>() {
+        @Override
+        public Advert createFromParcel(Parcel in) {
+            return new Advert(in);
+        }
+
+        @Override
+        public Advert[] newArray(int size) {
+            return new Advert[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(ownerID);
+       dest.writeString(category.name());
+        dest.writeString(description);
+        dest.writeInt(price);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            dest.writeBoolean(hourly);
+        }
+        dest.writeList(imagesURL);
+        dest.writeInt(rating);
+        dest.writeInt(voteCount);
+    }
 
     public Advert() {}
 
