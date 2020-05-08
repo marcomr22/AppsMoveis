@@ -5,8 +5,11 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
 
@@ -21,20 +24,30 @@ public class FirebaseStorageHandler {
     }
 
     public static void savePicture(byte[] image, final ImageSaved callback){
-        FirebaseStorage.getInstance().getReference(UUID.randomUUID() + ".png")
-                .putBytes(image)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.d(TAG_Image, "Saved new image");
-                        callback.onComplete(taskSnapshot.getStorage().getDownloadUrl().getResult());
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+        final UploadTask put = FirebaseStorage.getInstance().getReference().child(UUID.randomUUID() + ".png")
+                .putBytes(image);
+
+        Task<Uri> urlTask = put.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(TAG_Image, "Error saving image");
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+                return put.getResult().getStorage().getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    Log.d(TAG_Image, "onComplete: " + downloadUri.toString());
+                    callback.onComplete(downloadUri);
+                } else {
+                    Log.w(TAG_Image, "Error saving image");
+                }
             }
         });
+
     }
 
 }
