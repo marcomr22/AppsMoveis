@@ -120,11 +120,12 @@ public class Profile extends AppCompatActivity {
            try {
                InputStream stream = getContentResolver().openInputStream(data.getData());
                Bitmap image = BitmapFactory.decodeStream(stream);
+               ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
+               image.compress(Bitmap.CompressFormat.PNG, 100, stream2);
                imageButton.setImageBitmap(image);
                byte[] imageBytes = IoUtils.toByteArray(stream);
-               FirebaseStorageHandler FSH = new FirebaseStorageHandler();
 
-               FSH.savePicture(imageBytes, new FirebaseStorageHandler.ImageSaved() {
+               FirebaseStorageHandler.savePicture(stream2.toByteArray(), new FirebaseStorageHandler.ImageSaved() {
                    @Override
                    public void onComplete(Uri url) {
 
