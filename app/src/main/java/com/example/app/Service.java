@@ -11,6 +11,8 @@ import android.widget.RatingBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -21,7 +23,7 @@ import models.User;
 public class Service extends AppCompatActivity {
 
     private SearchView searchView;
-    private ImageView profilePic3;
+    private ImageView profilePic5;
     private ImageView profilePic2;
     private RatingBar ratingBar;
     private TextView username;
@@ -40,7 +42,7 @@ public class Service extends AppCompatActivity {
         setContentView(R.layout.activity_service);
 
         searchView = findViewById(R.id.Search);
-        profilePic3 = findViewById(R.id.profilePic3);
+        profilePic5 = findViewById(R.id.profilePic5);
         profilePic2 = findViewById(R.id.profilePic2);
         ratingBar = findViewById(R.id.ratingBar);
         username = findViewById(R.id.username2);
@@ -55,14 +57,9 @@ public class Service extends AppCompatActivity {
             @Override
             public void onCallback(User user) {
                 if(user.getPhotoURL() != null && user.getPhotoURL() != "") {
-                    try {
-                        URL url = new URL(user.getPhotoURL());
-                        Bitmap bmp = null;
-                        bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        profilePic2.setImageBitmap(bmp);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
+                    Glide.with(Service.this).asBitmap().load(user.getPhotoURL()).into(profilePic5);
+
                 }
                 username.setText(user.getName());
                 phone.setText(user.getNumber());

@@ -40,11 +40,15 @@ public class Re_Authentication extends AppCompatActivity {
     private AuthHandler authHandler;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
+    private User MyUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_re_authentication);
+
+        Intent oldIntent = this.getIntent();
+        MyUser = oldIntent.getParcelableExtra("MyUser");
 
         password = findViewById(R.id.password2);
         confirm = findViewById(R.id.login);
@@ -119,6 +123,7 @@ public class Re_Authentication extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             Log.d(TAG, FirebaseAuth.getInstance().getCurrentUser().getUid());
                             Intent i = new Intent(getApplicationContext(), Profile.class);
+                            i.putExtra("MyUser", MyUser);
                             startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.

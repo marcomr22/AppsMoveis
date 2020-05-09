@@ -106,7 +106,7 @@ public class Login extends AppCompatActivity{
         super.onStart();
 
         if (AuthHandler.getUser() != null){
-            Intent i = new Intent(Login.this, Menu.class);
+            Intent i = new Intent(Login.this, FullListShort.class);
             startActivity(i);
         }
 

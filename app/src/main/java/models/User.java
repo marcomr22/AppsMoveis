@@ -1,9 +1,12 @@
 package models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class User {
+public class User implements Parcelable {
 
     private String uID;
     private String name;
@@ -23,6 +26,27 @@ public class User {
         this.rating = rating;
         this.number = number;
     }
+
+    protected User(Parcel in) {
+        uID = in.readString();
+        name = in.readString();
+        email = in.readString();
+        photoURL = in.readString();
+        rating = in.readDouble();
+        number = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public void setName(String name) {
         this.name = name;
@@ -78,5 +102,20 @@ public class User {
                 ", rating=" + rating +
                 ", number='" + number + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(uID);
+        dest.writeString(name);
+        dest.writeString(email);
+        dest.writeString(photoURL);
+        dest.writeDouble(rating);
+        dest.writeString(number);
     }
 }

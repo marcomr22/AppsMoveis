@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import handlers.AuthHandler;
+import models.User;
 
 public class ChangePassword extends AppCompatActivity {
     private EditText OldPassword;
@@ -17,10 +18,13 @@ public class ChangePassword extends AppCompatActivity {
     private Button ChangePasswordButton;
     private AuthHandler authHandler;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+
+
 
         OldPassword = findViewById(R.id.old_pass);
         NewPassword = findViewById(R.id.new_pass);

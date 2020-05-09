@@ -3,22 +3,15 @@ package com.example.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
-import java.io.ByteArrayOutputStream;
+import com.bumptech.glide.Glide;
 
 import handlers.AuthHandler;
-import handlers.FirebaseStorageHandler;
-import handlers.FirestoreHandler;
-import models.Advert;
+import models.User;
 
 public class Menu extends AppCompatActivity {
     private Button ProfileSettingsButton;
@@ -26,6 +19,9 @@ public class Menu extends AppCompatActivity {
     private Button HiredServicesButton;
     private Button LogOutButton;
     private AuthHandler authHandler;
+    private ImageButton imageButton;
+    private User MyUser;
+
 
 
     @Override
@@ -33,6 +29,11 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        Intent oldIntent = this.getIntent();
+        MyUser = oldIntent.getParcelableExtra("MyUser");
+
+
+        imageButton = findViewById(R.id.profilePic4);
         ProfileSettingsButton = findViewById(R.id.ProfileSettingsButton);
         MyServicesButton = findViewById(R.id.MyServicesButton);
         HiredServicesButton = findViewById(R.id.HiredServicesButton);
@@ -40,10 +41,15 @@ public class Menu extends AppCompatActivity {
 
         authHandler = new AuthHandler();
 
+        if(!MyUser.getPhotoURL().equals("") && (MyUser.getPhotoURL() != null)){
+            Glide.with(Menu.this).asBitmap().load(MyUser.getPhotoURL()).into(imageButton);
+        }
+
         ProfileSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Menu.this, Re_Authentication.class);
+                i.putExtra("MyUser", MyUser);
                 startActivity(i);
             }
         });

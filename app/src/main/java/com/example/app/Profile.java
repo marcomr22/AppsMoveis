@@ -17,8 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -43,6 +45,7 @@ public class Profile extends AppCompatActivity {
     private EditText Username;
     private AuthHandler authHandler;
     private ImageButton imageButton;
+    private User MyUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class Profile extends AppCompatActivity {
         imageButton = findViewById(R.id.imageButton2);
 
         authHandler = new AuthHandler();
+        MyUser = new User();
 
         if (FirebaseAuth.getInstance().getCurrentUser().getIdToken(false).getResult().getSignInProvider().equals("google.com")) {
             ChangeEmailButton.setVisibility(View.GONE);
@@ -67,18 +71,27 @@ public class Profile extends AppCompatActivity {
         }
 
         FirestoreHandler.getUser(AuthHandler.getUser().getUid(), new FirestoreHandler.UserCallback() {
+
             @Override
             public void onCallback(User user) {
+                MyUser = user;
                 Username.setText(user.getName());
                 PhoneNumber.setText(user.getNumber());
                 Email.setText(user.getEmail());
+                String s = user.getPhotoURL();
+                if(s != "" && s != null){
+                    Glide.with(Profile.this).asBitmap().load(user.getPhotoURL()).into(imageButton);
+                }
             }
         });
+
+
 
         ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent (Profile.this, ChangePassword.class);
+                i.putExtra("MyUser", MyUser);
                 startActivity(i);
             }
         });
@@ -99,19 +112,18 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-
                 startActivityForResult(Intent.createChooser(intent, "Pick the Image"), 1);
             }
         });
-
     }
 
-    //Problemas no guardar a imagem
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -128,7 +140,8 @@ public class Profile extends AppCompatActivity {
                FirebaseStorageHandler.savePicture(stream2.toByteArray(), new FirebaseStorageHandler.ImageSaved() {
                    @Override
                    public void onComplete(Uri url) {
-
+                       MyUser.setPhotoURL(url.toString());
+                       FirestoreHandler.saveUser(MyUser);
                    }
                });
            } catch (FileNotFoundException e){
@@ -139,4 +152,6 @@ public class Profile extends AppCompatActivity {
 
         }
     }
+
+
 }
