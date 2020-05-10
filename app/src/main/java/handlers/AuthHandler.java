@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.app.FullListShort;
 import com.example.app.Login;
 import com.example.app.Menu;
 import com.example.app.Profile;
@@ -131,7 +132,7 @@ public class AuthHandler {
                 if (task.isSuccessful()) {
                     if (mAuth.getCurrentUser().isEmailVerified()) {
                         Toast.makeText(context, "SignIn successful", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(context, Menu.class);
+                        Intent i = new Intent(context, FullListShort.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(i);
                     } else {

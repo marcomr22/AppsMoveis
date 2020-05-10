@@ -22,14 +22,13 @@ public class Menu extends AppCompatActivity {
     private ImageButton imageButton;
     private User MyUser;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
         Intent oldIntent = this.getIntent();
+        MyUser = new User();
         MyUser = oldIntent.getParcelableExtra("MyUser");
 
 
@@ -41,8 +40,10 @@ public class Menu extends AppCompatActivity {
 
         authHandler = new AuthHandler();
 
-        if(!MyUser.getPhotoURL().equals("") && (MyUser.getPhotoURL() != null)){
-            Glide.with(Menu.this).asBitmap().load(MyUser.getPhotoURL()).into(imageButton);
+        if(MyUser != null) {
+            if ((MyUser.getPhotoURL() != null && !MyUser.getPhotoURL().equals(""))) {
+                Glide.with(Menu.this).asBitmap().load(MyUser.getPhotoURL()).into(imageButton);
+            }
         }
 
         ProfileSettingsButton.setOnClickListener(new View.OnClickListener() {
