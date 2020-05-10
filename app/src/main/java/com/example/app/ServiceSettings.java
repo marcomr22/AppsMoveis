@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +24,7 @@ import java.util.Random;
 import handlers.AuthHandler;
 import handlers.FirestoreHandler;
 import models.Advert;
+import models.User;
 
 import static models.Advert.*;
 
@@ -46,6 +48,8 @@ public class ServiceSettings extends AppCompatActivity {
     private int voteCount = 0;
     private String advertId = "";
     private ArrayList<ImageView> images;
+    private User MyUser;
+    private Category category;
 
     //Missing buttons
 
@@ -53,14 +57,24 @@ public class ServiceSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_settings);
-        Intent intent = getIntent();
-        int NewService = intent.getIntExtra("New Service",0);
+        Intent oldIntent = getIntent();
+
+        int NewService = oldIntent.getIntExtra("New Service",0);
+        MyUser = oldIntent.getParcelableExtra("MyUser");
 
         title = findViewById(R.id.serviceTitle);
         description = findViewById(R.id.editText4);
         price = findViewById(R.id.price);
         hourlyRate = findViewById(R.id.hour_rate);
         serviceCategories = findViewById(R.id.service_categories);
+
+        serviceCategories.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = findViewById(checkedId);
+                category = Category.convert(rb.getText().toString().toUpperCase());
+            }
+        });
         /*
         pic1 = findViewById(R.id.pic1);
         pic2 = findViewById(R.id.pic2);
@@ -98,6 +112,9 @@ public class ServiceSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirestoreHandler.saveAdvert(gatherUiInfo());
+                Intent intent = new Intent(ServiceSettings.this, MyServices.class);
+                intent.putExtra("MyUser", MyUser);
+                startActivity(intent);
             }
         });
 
@@ -115,57 +132,23 @@ public class ServiceSettings extends AppCompatActivity {
             }
         });
 
-
     }
 
+    //needs to be changed
     private String generateAID(){
         String aid = advertId;
-        String uid = AuthHandler.getUser().getUid();
+        String uid = MyUser.getuID();
         Random r = new Random();
-        int beg =  r.nextInt(uid.length()/2) + 6;
-        String aux = aid.substring(beg);
-        aid = uid + aid + HashCode.fromString(aux);
+        int beg =  r.nextInt(uid.length()/2);
+        String aux = uid.substring(beg);
+        aid = uid + aid + aux.hashCode();
         return aid;
     }
 
     //This functions gets all the info in the UI
     public Advert gatherUiInfo() {
-
-        int category_int = serviceCategories.getCheckedRadioButtonId();
-        Category category;
-        switch (category_int){
-            case 0:
-                category = Category.CARPENTRY;
-                break;
-            case 1:
-                category = Category.MECHANICS;
-                break;
-            case 2:
-                category = Category.TECHNOLOGY;
-                break;
-            case 3:
-                category = Category.COOKING;
-                break;
-            case 4:
-                category = Category.CHILD;
-                break;
-            case 5:
-                category = Category.PET;
-                break;
-            case 6:
-                category = Category.EVENT;
-                break;
-            case 7:
-                category = Category.HEALTH;
-                break;
-            default:
-                category = Category.OTHER;
-        }
-
-
         List<String> URLS = new ArrayList<String>();
         //Load das URL para cada Imagem
-
         Advert advert = new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, description.getText().toString(), Integer.parseInt(price.getText().toString()), hourlyRate.isChecked(),URLS,rating,voteCount);
         return advert;
     }
@@ -178,7 +161,6 @@ public class ServiceSettings extends AppCompatActivity {
         description.setText(a.getDescription());
         price.setText(String.valueOf(a.getPrice()));
         hourlyRate.setChecked(a.isHourly());
-        Log.d("teste", "loadAdvert: " + Category.getValue(a.getCategory()));
         serviceCategories.check( Category.getValue(a.getCategory()));
 
         for(int i = 0; i < a.getImagesURL().size(); i++) {

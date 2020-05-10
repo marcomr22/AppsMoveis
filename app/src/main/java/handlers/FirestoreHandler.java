@@ -141,7 +141,7 @@ public class FirestoreHandler {
                     .whereEqualTo("category", category.toString())
                     .orderBy("voteCount", Query.Direction.DESCENDING)
                     .orderBy("rating", Query.Direction.DESCENDING)
-                    .limit(1);
+                    .limit(10);
 
         if(docSnapshot != null){
             query =  bd.collectionGroup("adverts")
@@ -149,7 +149,7 @@ public class FirestoreHandler {
                     .orderBy("voteCount", Query.Direction.DESCENDING)
                     .orderBy("rating", Query.Direction.DESCENDING)
                     .startAfter(docSnapshot)
-                    .limit(1);
+                    .limit(10);
         }
         
         

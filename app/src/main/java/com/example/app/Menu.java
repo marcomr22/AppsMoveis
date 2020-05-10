@@ -67,6 +67,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent (Menu.this, MyServices.class);
+                i.putExtra("MyUser", MyUser);
                 startActivity(i);
             }
         });

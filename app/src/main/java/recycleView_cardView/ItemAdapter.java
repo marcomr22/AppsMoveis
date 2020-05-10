@@ -53,7 +53,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, int position) {
 
         final Advert item = mList.get(position);
-        Glide.with(mContext).asBitmap().load(item.getImagesURL().get(0)).into(holder.item_image);
+        if(!item.getImagesURL().isEmpty()){
+            Glide.with(mContext).asBitmap().load(item.getImagesURL().get(0)).into(holder.item_image);
+        }
+
         holder.item_description.setText(item.getDescription());
 
         holder.item_price.setText(String.valueOf(item.getPrice()));
@@ -61,7 +64,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "will load"+item.getId().toString(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, nextActivityClass);
                 intent.putExtra("Advert", item);
                 mContext.startActivity(intent);
