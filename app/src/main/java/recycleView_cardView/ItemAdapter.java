@@ -22,8 +22,10 @@ import com.example.app.R;
 import com.example.app.ServiceSettings;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import models.Advert;
 
@@ -53,6 +55,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, int position) {
 
         final Advert item = mList.get(position);
+        final ArrayList<String> URLs = (ArrayList<String>) item.getImagesURL();
+
         if(!item.getImagesURL().isEmpty()){
             Glide.with(mContext).asBitmap().load(item.getImagesURL().get(0)).into(holder.item_image);
         }
@@ -66,6 +70,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, nextActivityClass);
                 intent.putExtra("Advert", item);
+                intent.putStringArrayListExtra("URLs", URLs);
                 mContext.startActivity(intent);
 
             }

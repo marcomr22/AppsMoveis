@@ -1,30 +1,39 @@
 package com.example.app;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.ClipData;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.common.hash.HashCode;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 import handlers.AuthHandler;
+import handlers.FirebaseStorageHandler;
 import handlers.FirestoreHandler;
 import models.Advert;
 import models.User;
@@ -54,7 +63,10 @@ public class ServiceSettings extends AppCompatActivity {
     private ArrayList<ImageButton> images;
     private User MyUser;
     private Category category;
+    List<byte[]> imageList = new ArrayList<>();
+    List<String> finalList;
     private Advert a;
+
 
     //Missing buttons
     @Override
@@ -63,6 +75,7 @@ public class ServiceSettings extends AppCompatActivity {
         setContentView(R.layout.activity_service_settings);
         Intent oldIntent = getIntent();
 
+        //Load de User
         int NewService = oldIntent.getIntExtra("New Service",0);
         MyUser = oldIntent.getParcelableExtra("MyUser");
 
@@ -72,6 +85,7 @@ public class ServiceSettings extends AppCompatActivity {
         hourlyRate = findViewById(R.id.hour_rate);
         serviceCategories = findViewById(R.id.service_categories);
 
+        finalList = new ArrayList<>();
         images = new ArrayList<>();
 
         pic1 = findViewById(R.id.pic1);
@@ -97,12 +111,15 @@ public class ServiceSettings extends AppCompatActivity {
         } else {
             advertId = generateAID();
             a = new Advert();
+            a.setImagesURL(new ArrayList<String>());
         }
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(gatherUiInfo() != a){
-                    FirestoreHandler.saveAdvert(gatherUiInfo());
+                Advert aux = gatherUiInfo();
+                if(aux != a){
+                    FirestoreHandler.saveAdvert(aux);
                     Intent intent = new Intent(ServiceSettings.this, MyServices.class);
                     intent.putExtra("MyUser", MyUser);
                     startActivity(intent);
@@ -133,6 +150,9 @@ public class ServiceSettings extends AppCompatActivity {
             }
         });
 
+        pic1.setOnClickListener(picturesListener);
+
+
     }
 
     //Creates a random AdvertID
@@ -140,9 +160,12 @@ public class ServiceSettings extends AppCompatActivity {
         String aid;
         String uid = MyUser.getuID();
         Random r = new Random();
-        int beg = r.nextInt(uid.length()/2);
+        byte[] array = new byte[10];
+        int beg = r.nextInt(uid.length()-1);
+        r.nextBytes(array);
         String aux = uid.substring(beg);
-        aid = uid + aux.hashCode();
+        String extra = new String(array, Charset.forName("UTF-8"));
+        aid = uid + aux.hashCode() + extra;
         return aid;
     }
 
@@ -165,16 +188,20 @@ public class ServiceSettings extends AppCompatActivity {
         }
         category = Category.convert(radioButton.getText().toString().toUpperCase());
 
-        List<String> URLS = new ArrayList<String>();
+        //save to firestorage
+
         //Load das URL para cada Imagem
-        Advert advert = new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, description.getText().toString(), Integer.parseInt(price.getText().toString()), hourlyRate.isChecked(),URLS,rating,voteCount);
-        return advert;
+        for (String s: finalList) Log.d("teste", "URL no final vectot: " + s);
+
+
+        return new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, description.getText().toString(), Integer.parseInt(price.getText().toString()), hourlyRate.isChecked(),finalList,rating,voteCount);
     }
 
     private void loadAdvert(){
 
         //Load 1 advert
         a = getIntent().getParcelableExtra("Advert");
+        advertId = a.getId();
 
         description.setText(a.getDescription());
         price.setText(String.valueOf(a.getPrice()));
@@ -182,8 +209,12 @@ public class ServiceSettings extends AppCompatActivity {
 
         serviceCategories.check(serviceCategories.getChildAt(Category.getValue(a.getCategory())).getId());
 
-        for(int i = 0; i < a.getImagesURL().size(); i++) {
-            Glide.with(ServiceSettings.this).asBitmap().load(a.getImagesURL().get(i)).into(images.get(i));
+
+        ArrayList<String> arrayList = this.getIntent().getStringArrayListExtra("URLs");
+        if(arrayList != null) {
+            for (int i = 0; i < arrayList.size() && i < 6; i++) {
+                Glide.with(ServiceSettings.this).asBitmap().load(arrayList.get(i)).into(images.get(i));
+            }
         }
 
         rating = a.getRating();
@@ -191,6 +222,93 @@ public class ServiceSettings extends AppCompatActivity {
 
     }
 
+    // saves the images and saves the URL's
+    private void saveImages(){
+        for(int i = 0; i < imageList.size(); i++){
+            FirebaseStorageHandler.savePicture(imageList.get(i), new FirebaseStorageHandler.ImageSaved() {
+                @Override
+                public void onComplete(Uri url) {
+                    finalList.add(url.toString());
+                    Log.d("teste: " , url.toString());
+                }
+            });
+        }
+    }
 
+    //Images Listener
+    View.OnClickListener picturesListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(checkExternalStoragePermission()){
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Pick the Images"), 6);
+            }
+            else {
+                verifyPermission();
+            }
+        }
+    };
+
+    //Images association
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 6) {
+
+            imageList = new ArrayList<>();
+            ClipData clipData = data.getClipData();
+
+            //Several Images selected
+            if(clipData != null){
+                for (int i = 0; i < clipData.getItemCount() && i < 6; i++){
+                    Uri imageUri = clipData.getItemAt(i).getUri();
+                    try {
+                        InputStream stream = getContentResolver().openInputStream(imageUri);
+                        Bitmap image = BitmapFactory.decodeStream(stream);
+                        ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
+                        image.compress(Bitmap.CompressFormat.PNG, 100, stream2);
+                        byte[] imageBytes = stream2.toByteArray();
+                        imageList.add(imageBytes);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            //1 Image selected
+            } else{
+                try {
+                    InputStream stream = getContentResolver().openInputStream(data.getData());
+                    Bitmap image = BitmapFactory.decodeStream(stream);
+                    ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
+                    image.compress(Bitmap.CompressFormat.PNG, 100, stream2);
+                    byte[] imageBytes = stream2.toByteArray();
+                    imageList.add(imageBytes);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            saveImages();
+            for (int i = 0; i < finalList.size() && i < 6; i++) {
+                Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(i)).into(images.get(i));
+            }
+        }
+    }
+
+    //Permissions
+    private void verifyPermission(){
+        String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
+        ActivityCompat.requestPermissions(ServiceSettings.this, new String[]{permission},1);
+    }
+
+    //Permissions
+    private boolean checkExternalStoragePermission(){
+        String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
+        int permissionRequest = ActivityCompat.checkSelfPermission(ServiceSettings.this, permission);
+
+        if(permissionRequest != PackageManager.PERMISSION_GRANTED){
+            return false;
+        }
+        return true;
+    }
 
 }

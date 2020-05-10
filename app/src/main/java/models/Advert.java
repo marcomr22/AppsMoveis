@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Advert implements Parcelable {
@@ -64,7 +65,8 @@ public class Advert implements Parcelable {
         description = in.readString();
         price = in.readInt();
         hourly = in.readByte() != 0;
-        imagesURL = in.createStringArrayList();
+        imagesURL = new ArrayList<>();
+        in.readStringList(imagesURL);
         rating = in.readInt();
         voteCount = in.readInt();
     }
@@ -96,7 +98,7 @@ public class Advert implements Parcelable {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             dest.writeBoolean(hourly);
         }
-        dest.writeList(imagesURL);
+        dest.writeStringList(imagesURL);
         dest.writeInt(rating);
         dest.writeInt(voteCount);
     }

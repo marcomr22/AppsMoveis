@@ -3,9 +3,12 @@ package com.example.app;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -117,9 +120,15 @@ public class Profile extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Pick the Image"), 1);
+                if(checkExternalStoragePermission()){
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    startActivityForResult(Intent.createChooser(intent, "Pick the Image"), 1);
+                }
+                else{
+                    verifyPermission();
+                }
+
             }
         });
     }
@@ -153,5 +162,19 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+    private void verifyPermission(){
+        String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
+        ActivityCompat.requestPermissions(Profile.this, new String[]{permission},1);
+    }
+
+    private boolean checkExternalStoragePermission(){
+        String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
+        int permissionRequest = ActivityCompat.checkSelfPermission(Profile.this, permission);
+
+        if(permissionRequest != PackageManager.PERMISSION_GRANTED){
+            return false;
+        }
+        return true;
+    }
 
 }
