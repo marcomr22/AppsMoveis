@@ -24,20 +24,21 @@
         app:layout_constraintVertical_bias="0.0"
         android:contentDescription="@string/todo" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/leftArrow"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="#00000000"
+        android:contentDescription="@string/todo"
         android:rotation="-90"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/arrow_up_float"
         app:layout_constraintBottom_toTopOf="@+id/comments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
-        app:layout_constraintVertical_bias="0.502"
-        app:srcCompat="@android:drawable/arrow_up_float"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintVertical_bias="0.502" />
 
     <Button
         android:id="@+id/comments"
@@ -188,29 +189,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/rightArrow"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="#00000000"
+        android:contentDescription="@string/todo"
         android:rotation="-90"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/arrow_down_float"
         app:layout_constraintBottom_toTopOf="@+id/comments2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.918"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serviceDescription"
-        app:srcCompat="@android:drawable/arrow_down_float"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/servicePic"
         android:layout_width="280dp"
         android:layout_height="180dp"
+        android:backgroundTint="#FFFFFF"
         android:contentDescription="@string/service_picture"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_gallery"
         app:layout_constraintBottom_toTopOf="@+id/comments"
         app:layout_constraintEnd_toStartOf="@+id/rightArrow"
         app:layout_constraintStart_toEndOf="@+id/leftArrow"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

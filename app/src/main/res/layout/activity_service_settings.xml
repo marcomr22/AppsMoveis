@@ -7,59 +7,46 @@
     tools:context=".ServiceSettings">
 
     <ImageButton
-        android:id="@+id/pic1"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="276dp"
-        android:contentDescription="@string/service_picture"
-        android:src="@android:drawable/ic_menu_add"
-        app:layout_constraintBottom_toTopOf="@+id/confirmService"
+        android:id="@+id/rightArrow2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00000000"
+        android:contentDescription="@string/todo"
+        android:rotation="-90"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/arrow_down_float"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pictures_prompt"
-        app:layout_constraintVertical_bias="0.151" />
+        tools:layout_editor_absoluteY="536dp" />
 
     <ImageButton
-        android:id="@+id/pic6"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="32dp"
-        android:contentDescription="@string/service_picture"
-        android:src="@android:drawable/ic_menu_add"
-        app:layout_constraintBottom_toTopOf="@+id/deleteService"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:id="@+id/leftArrow2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:background="#00000000"
+        android:contentDescription="@string/todo"
+        android:rotation="-90"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/arrow_up_float"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pic3" />
+        tools:layout_editor_absoluteY="536dp" />
 
     <ImageButton
-        android:id="@+id/pic3"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="32dp"
+        android:id="@+id/servicePic2"
+        android:layout_width="282dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#FFFFFF"
         android:contentDescription="@string/service_picture"
-        android:src="@android:drawable/ic_menu_add"
-        app:layout_constraintBottom_toTopOf="@+id/deleteService"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pictures_prompt"
-        app:layout_constraintVertical_bias="0.151" />
-
-    <ImageButton
-        android:id="@+id/pic2"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:contentDescription="@string/service_picture"
-        android:src="@android:drawable/ic_menu_add"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_gallery"
         app:layout_constraintBottom_toTopOf="@+id/cancelService"
-        app:layout_constraintEnd_toStartOf="@+id/pic3"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toEndOf="@+id/pic1"
-        app:layout_constraintTop_toBottomOf="@+id/pictures_prompt"
-        app:layout_constraintVertical_bias="0.151" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pictures_prompt" />
 
     <Button
         android:id="@+id/confirmService"
@@ -114,29 +101,30 @@
     <TextView
         android:id="@+id/categories_prompt"
         android:layout_width="121dp"
-        android:layout_height="52dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="15dp"
         android:lines="2"
         android:text="@string/category_service"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/service_categories"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintEnd_toStartOf="@+id/serviceTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.608" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/service_categories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
+        android:layout_width="140dp"
+        android:layout_height="290dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/editText4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221">
+        app:layout_constraintTop_toBottomOf="@+id/categories_prompt">
 
         <RadioButton
             android:id="@+id/carpentry"
@@ -194,7 +182,7 @@
 
         <RadioButton
             android:id="@+id/health_beauty"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/category_8"
             tools:layout_editor_absoluteX="25dp"
@@ -213,7 +201,9 @@
         android:id="@+id/editText4"
         style="@style/Base.Widget.MaterialComponents.AutoCompleteTextView"
         android:layout_width="227dp"
-        android:layout_height="289dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
@@ -223,12 +213,10 @@
         android:textAlignment="textStart"
         android:textColor="#000000"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/service_categories"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintTop_toBottomOf="@+id/serviceTitle" />
 
     <TextView
         android:id="@+id/pictures_prompt"
@@ -239,11 +227,11 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/servicePic2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hour_rate"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintTop_toBottomOf="@+id/hour_rate" />
 
     <CheckBox
         android:id="@+id/hour_rate"
@@ -251,12 +239,12 @@
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/hourly_rate"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/pictures_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
     <EditText
         android:id="@+id/price"
@@ -264,54 +252,33 @@
         android:layout_height="45dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/pricing"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/pictures_prompt"
         app:layout_constraintEnd_toStartOf="@+id/hour_rate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
-        app:layout_constraintVertical_bias="0.05"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/service_categories" />
 
     <EditText
         android:id="@+id/serviceTitle"
         android:layout_width="243dp"
-        android:layout_height="47dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/service_title_hint"
         android:inputType="textPersonName"
+        android:lines="2"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/categories_prompt"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66"
-        android:autofillHints="" />
-
-    <ImageButton
-        android:id="@+id/pic4"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:contentDescription="@string/service_picture"
-        android:src="@android:drawable/ic_menu_add"
-        app:layout_constraintBottom_toTopOf="@+id/confirmService"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pic1" />
-
-    <ImageButton
-        android:id="@+id/pic5"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:contentDescription="@string/service_picture"
-        android:src="@android:drawable/ic_menu_add"
-        app:layout_constraintBottom_toTopOf="@+id/cancelService"
-        app:layout_constraintEnd_toStartOf="@+id/pic6"
-        app:layout_constraintStart_toEndOf="@+id/pic4"
-        app:layout_constraintTop_toBottomOf="@+id/pic2" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
