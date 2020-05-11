@@ -23,6 +23,30 @@ public class Advert implements Parcelable {
             return c.value;
         }
 
+        public static Category convert(int value){
+            switch (value) {
+                case 0:
+                    return Category.CARPENTRY;
+                case 1:
+                    return Category.MECHANICS;
+                case 2:
+                    return Category.TECHNOLOGY;
+                case 3:
+                    return Category.COOKING;
+                case 4:
+                    return Category.CHILD;
+                case 5:
+                    return Category.PET;
+                case 6:
+                    return Category.EVENT;
+                case 7:
+                    return Category.HEALTH;
+                default:
+                    return Category.OTHER;
+            }
+
+        }
+
         public static Category convert(String s){
             switch (s) {
                 case "CARPENTRY":
