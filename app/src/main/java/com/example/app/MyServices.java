@@ -59,7 +59,7 @@ public class MyServices  extends AppCompatActivity {
 
     //Devia pedir os meus serviços mas pede os serviços de uma dada categoria
     private void loadMyServices(){
-        FirestoreHandler firestoreHandler = new FirestoreHandler(MyServices.this, Advert.Category.OTHER, null);
+        FirestoreHandler firestoreHandler = new FirestoreHandler(MyServices.this, Advert.Category.ALL, MyUser.getuID());
         firestoreHandler.getAdverts(new FirestoreHandler.QueryCallback() {
             @Override
             public void onCallback(List<Advert> list) {

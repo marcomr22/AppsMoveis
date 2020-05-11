@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import CustomAdapter.CustomAdapter;
 import handlers.AuthHandler;
@@ -33,13 +35,15 @@ public class FullListShort extends AppCompatActivity {
     ArrayList<Advert> itemsList;
     private ImageButton imageButton;
     private Spinner spinner;
-    private String[] CategoryNames = {"Carpentry","Mechanics","Technology","Cooking","Child Care","Pet Care","Event Planning","Health & Beauty","Other"};
+    private String[] CategoryNames = {"Carpentry","Mechanics","Technology","Cooking","Child Care","Pet Care","Event Planning","Health & Beauty","Other","All"};
     private int[] images = {R.drawable.icon_carpentry,R.drawable.icon_mecanics,R.drawable.icon_tecnology,R.drawable.icon_cooking,R.drawable.icon_child_care,
-                            R.drawable.icon_pet_care,R.drawable.icon_event_planning,R.drawable.icon_health_beauty,R.drawable.icon_others};
+                            R.drawable.icon_pet_care,R.drawable.icon_event_planning,R.drawable.icon_health_beauty,R.drawable.icon_others,R.drawable.common_full_open_on_phone};
     private CustomAdapter adapter;
     private User MyUser;
-    private Advert.Category category;
+    private Advert.Category category = Advert.Category.ALL;
     private  FirestoreHandler firestoreHandler;
+    private int position;
+    private LinearLayoutManager layoutManager = new LinearLayoutManager( FullListShort.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,8 @@ public class FullListShort extends AppCompatActivity {
 
         MyUser = new User();
         spinner = findViewById(R.id.spinner3);
+
+        position = 0;
 
         FirestoreHandler.getUser(AuthHandler.getUser().getUid(), new FirestoreHandler.UserCallback() {
             @Override
@@ -78,7 +84,7 @@ public class FullListShort extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 itemsList.clear();
-                firestoreHandler = new FirestoreHandler(FullListShort.this, Advert.Category.convert(position));
+                firestoreHandler = new FirestoreHandler(FullListShort.this, Advert.Category.convert(position), null);
                 loadServices();
             }
             @Override
@@ -91,11 +97,15 @@ public class FullListShort extends AppCompatActivity {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (!recyclerView.canScrollVertically(1)) {
+                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    position = layoutManager.findFirstVisibleItemPosition();
                     loadServices();
                 }
             }
         });
+
+        firestoreHandler = new FirestoreHandler(FullListShort.this, Advert.Category.ALL, null);
+        loadServices();
     }
 
     //Pede uma lista com serviços do tipo
@@ -103,14 +113,19 @@ public class FullListShort extends AppCompatActivity {
         firestoreHandler.getAdverts(new FirestoreHandler.QueryCallback() {
             @Override
             public void onCallback(List<Advert> list) {
+                if(list.isEmpty()){
+                    Toast.makeText(FullListShort.this, "No more Services available. Please try again later.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 for (Advert advert : list) {
                     itemsList.add(advert);
                 }
-                LinearLayoutManager layoutManager = new LinearLayoutManager( FullListShort.this);
+
                 RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
                 ItemAdapter adapter = new ItemAdapter(FullListShort.this, itemsList, ServiceSettings.class);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(rvLiLayoutManager);
+                recyclerView.scrollToPosition(position+1);
             }
         });
     }

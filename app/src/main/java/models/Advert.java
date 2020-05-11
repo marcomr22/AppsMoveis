@@ -41,8 +41,10 @@ public class Advert implements Parcelable {
                     return Category.EVENT;
                 case 7:
                     return Category.HEALTH;
-                default:
+                case 8:
                     return Category.OTHER;
+                default:
+                    return Category.ALL;
             }
 
         }
