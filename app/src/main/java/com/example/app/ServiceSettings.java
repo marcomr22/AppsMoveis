@@ -31,6 +31,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import handlers.AuthHandler;
 import handlers.FirebaseStorageHandler;
@@ -155,6 +156,10 @@ public class ServiceSettings extends AppCompatActivity {
 
     }
 
+    private String generateAID(){
+        return UUID.randomUUID().toString();
+    }
+    /*
     //Creates a random AdvertID
     private String generateAID(){
         String aid;
@@ -168,7 +173,7 @@ public class ServiceSettings extends AppCompatActivity {
         aid = uid + aux.hashCode() + extra;
         return aid;
     }
-
+*/
     //This functions gets all the info in the UI
     public Advert gatherUiInfo() {
 
