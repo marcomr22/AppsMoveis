@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="CategoriesList">
+        <item>"Carpentry"</item>
+        <item>"Mechanics"</item>
+        <item>"Technology"</item>
+        <item>"Cooking"</item>
+        <item>"Child Care"</item>
+        <item>"Pet Care"</item>
+        <item>"Event Planning"</item>
+        <item>"Health and Beauty"</item>
+        <item>"Other"</item>
+    </string-array>
+</resources>

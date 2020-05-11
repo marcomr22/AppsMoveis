@@ -39,7 +39,9 @@
         android:layout_marginTop="37dp"
         android:layout_marginEnd="122dp"
         android:layout_marginBottom="662dp"
-        android:layoutDirection="ltr" />
+        android:layoutDirection="ltr" >
+
+    </SearchView>
 
     <ImageView
         android:id="@+id/profilePic3"
@@ -55,5 +57,10 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="649dp"
         android:contentDescription="@string/my_profile_picture" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="300dp"
+        android:layout_height="40dp" />
 
 </RelativeLayout>
