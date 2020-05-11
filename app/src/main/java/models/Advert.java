@@ -12,7 +12,7 @@ public class Advert implements Parcelable {
 
 
     public enum Category {
-        CARPENTRY(0), MECHANICS(1), TECHNOLOGY(2), COOKING(3), CHILD(4), PET(5), EVENT(6), HEALTH(7), OTHER(8);
+        CARPENTRY(0), MECHANICS(1), TECHNOLOGY(2), COOKING(3), CHILD(4), PET(5), EVENT(6), HEALTH(7), OTHER(8), ALL(9);
         public int value;
 
         Category(int n){
@@ -41,8 +41,10 @@ public class Advert implements Parcelable {
                     return Category.EVENT;
                 case "HEALTH":
                     return Category.HEALTH;
-                default:
+                case "OTHER":
                     return Category.OTHER;
+                default:
+                    return Category.ALL;
             }
         }
     }

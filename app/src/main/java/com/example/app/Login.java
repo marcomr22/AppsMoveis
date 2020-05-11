@@ -31,10 +31,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 import handlers.AuthHandler;
 import handlers.FirebaseStorageHandler;
 import handlers.FirestoreHandler;
+import models.Advert;
 import models.User;
 
 public class Login extends AppCompatActivity{
@@ -104,6 +106,11 @@ public class Login extends AppCompatActivity{
     @Override
     public void onStart() {
         super.onStart();
+
+        Log.d("test", "initiated");
+        FirestoreHandler
+                .saveAdvert(new Advert("advert12", "uid0", Advert.Category.CARPENTRY, "está funcionar", 12, false, new ArrayList<String>(), 10,10));
+
 
         if (AuthHandler.getUser() != null){
             Intent i = new Intent(Login.this, FullListShort.class);

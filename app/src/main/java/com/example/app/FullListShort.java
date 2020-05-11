@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import CustomAdapter.CustomAdapter;
 import handlers.AuthHandler;
@@ -46,6 +48,7 @@ public class FullListShort extends AppCompatActivity {
 
         imageButton = findViewById(R.id.profilePic);
 
+        FirestoreHandler firestoreHandler = new FirestoreHandler(this, Advert.Category.CARPENTRY, null);
 
         MyUser = new User();
         spinner = findViewById(R.id.spinner3);

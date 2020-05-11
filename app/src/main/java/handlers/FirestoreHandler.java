@@ -31,11 +31,14 @@ public class FirestoreHandler {
     private Activity activity;
     private FirebaseFirestore bd;
     private Advert.Category category;
+    private String user;
     private DocumentSnapshot docSnapshot;
 
-    public FirestoreHandler(Activity activity, Advert.Category category) {
+
+    public FirestoreHandler(Activity activity, Advert.Category category, String user) {
         this.activity = activity;
         this.category = category;
+        this.user = user;
         this.bd = FirebaseFirestore.getInstance();
     }
 
@@ -100,7 +103,6 @@ public class FirestoreHandler {
 
     public static void saveAdvert(Advert advert){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         DocumentReference doc = db.document("/users/"+ advert.getOwnerID() + "/adverts/"+ advert.getId());
         doc.set(advert)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -135,25 +137,62 @@ public class FirestoreHandler {
     public interface QueryCallback{
         void onCallback(List<Advert> list);
     }
-    
-    public void getAdverts(final QueryCallback callback){
-        Query query = bd.collectionGroup("adverts")
-                    .whereEqualTo("category", category.toString())
-                    .orderBy("voteCount", Query.Direction.DESCENDING)
-                    .orderBy("rating", Query.Direction.DESCENDING)
-                    .limit(10);
 
+    private Query createQuery(){
+        Query query = bd.collectionGroup("adverts")
+                .orderBy("voteCount", Query.Direction.DESCENDING)
+                .orderBy("rating", Query.Direction.DESCENDING)
+                .limit(1);
+        //Todas de um utilizador; Categoria todos ou uma especifico
         if(docSnapshot != null){
-            query =  bd.collectionGroup("adverts")
-                    .whereEqualTo("category", category.toString())
-                    .orderBy("voteCount", Query.Direction.DESCENDING)
-                    .orderBy("rating", Query.Direction.DESCENDING)
-                    .startAfter(docSnapshot)
-                    .limit(10);
+            if(user!=null){
+                query = bd.collectionGroup("adverts")
+                        .whereEqualTo("uID", user)
+                        .orderBy("voteCount", Query.Direction.DESCENDING)
+                        .orderBy("rating", Query.Direction.DESCENDING)
+                        .startAfter(docSnapshot)
+                        .limit(1);
+            }else if(this.category.equals(Advert.Category.ALL)){
+                query = bd.collectionGroup("adverts")
+                        .orderBy("voteCount", Query.Direction.DESCENDING)
+                        .orderBy("rating", Query.Direction.DESCENDING)
+                        .startAfter(docSnapshot)
+                        .limit(1);
+            }else{
+                query = bd.collectionGroup("adverts")
+                        .whereEqualTo("category", this.category)
+                        .orderBy("voteCount", Query.Direction.DESCENDING)
+                        .orderBy("rating", Query.Direction.DESCENDING)
+                        .startAfter(docSnapshot)
+                        .limit(1);
+            }
+        }else{
+            if(user!=null){
+                Log.d("create query", "user" + user);
+                query = bd.collectionGroup("adverts")
+                        .whereEqualTo("uID", user)
+                        .orderBy("voteCount", Query.Direction.DESCENDING)
+                        .orderBy("rating", Query.Direction.DESCENDING)
+                        .limit(1);
+            }else if( this.category.equals(Advert.Category.ALL)){
+                query = bd.collectionGroup("adverts")
+                        .orderBy("voteCount", Query.Direction.DESCENDING)
+                        .orderBy("rating", Query.Direction.DESCENDING)
+                        .limit(1);
+            }else{
+                query = bd.collectionGroup("adverts")
+                        .whereEqualTo("category", this.category)
+                        .orderBy("voteCount", Query.Direction.DESCENDING)
+                        .orderBy("rating", Query.Direction.DESCENDING)
+                        .limit(1);
+            }
         }
-        
-        
-        query.get()
+        return query;
+    }
+
+    public void getAdverts(final QueryCallback callback){
+
+        this.createQuery().get()
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
@@ -167,8 +206,8 @@ public class FirestoreHandler {
                         Log.d(TAG_READ_SUCCESSFUL, "Advert query" + queryDocumentSnapshots.toString());
                         List<DocumentSnapshot> snapList = queryDocumentSnapshots.getDocuments();
                         if(!snapList.isEmpty()) {
-                            Log.d("test fh", snapList.get(snapList.size() - 1).toString());
-                            docSnapshot = snapList.get(snapList.size() - 1);
+                            Log.d("test_fh", snapList.toString());
+                            docSnapshot = snapList.get(snapList.size()-1);
                         }
                         List<Advert> list = new ArrayList<>();
                         for(DocumentSnapshot d: snapList)
