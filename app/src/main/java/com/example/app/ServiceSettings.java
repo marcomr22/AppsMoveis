@@ -48,20 +48,17 @@ public class ServiceSettings extends AppCompatActivity {
     private EditText price;
     private CheckBox hourlyRate;
     private RadioGroup serviceCategories;
-    private ImageButton pic1;
-    private ImageButton pic2;
-    private ImageButton pic3;
-    private ImageButton pic4;
-    private ImageButton pic5;
-    private ImageButton pic6;
     private Button confirm;
     private Button delete;
     private Button cancel;
 
     private  int rating = 0;
     private int voteCount = 0;
+    private int picNumber = -1;
     private String advertId = "";
-    private ArrayList<ImageButton> images;
+    private ImageButton image;
+    private ImageButton left;
+    private ImageButton right;
     private User MyUser;
     private Category category;
     List<byte[]> imageList = new ArrayList<>();
@@ -87,20 +84,9 @@ public class ServiceSettings extends AppCompatActivity {
         serviceCategories = findViewById(R.id.service_categories);
 
         finalList = new ArrayList<>();
-        images = new ArrayList<>();
-
-        pic1 = findViewById(R.id.pic1);
-        pic2 = findViewById(R.id.pic2);
-        pic3 = findViewById(R.id.pic3);
-        pic4 = findViewById(R.id.pic4);
-        pic5 = findViewById(R.id.pic5);
-        pic6 = findViewById(R.id.pic6);
-        images.add(pic1);
-        images.add(pic2);
-        images.add(pic3);
-        images.add(pic4);
-        images.add(pic5);
-        images.add(pic6);
+        image = findViewById(R.id.servicePic2);
+        left = findViewById(R.id.leftArrow2);
+        right = findViewById(R.id.rightArrow2);
 
         confirm = findViewById(R.id.confirmService);
         delete = findViewById(R.id.deleteService);
@@ -151,9 +137,35 @@ public class ServiceSettings extends AppCompatActivity {
             }
         });
 
-        pic1.setOnClickListener(picturesListener);
+        image.setOnClickListener(picturesListener);
 
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(picNumber != -1){
+                   if(picNumber == 0){
+                       picNumber = finalList.size()-1;
+                   }else {
+                       picNumber--;
+                   }
+                   Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(picNumber)).into(image);
+               }
+            }
+        });
 
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(picNumber != -1){
+                    if(picNumber == finalList.size()-1){
+                        picNumber = 0;
+                    }else {
+                        picNumber++;
+                    }
+                    Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(picNumber)).into(image);
+                }
+            }
+        });
     }
 
     private String generateAID(){
@@ -193,13 +205,15 @@ public class ServiceSettings extends AppCompatActivity {
         }
         category = Category.convert(radioButton.getText().toString().toUpperCase());
 
-        //save to firestorage
+
 
         //Load das URL para cada Imagem
         for (String s: finalList) Log.d("teste", "URL no final vectot: " + s);
 
 
-        return new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, description.getText().toString(), Integer.parseInt(price.getText().toString()), hourlyRate.isChecked(),finalList,rating,voteCount);
+        String desc = title.getText().toString() + "\n" + description.getText().toString();
+
+        return new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, desc, Integer.parseInt(price.getText().toString()), hourlyRate.isChecked(),finalList,rating,voteCount);
     }
 
     private void loadAdvert(){
@@ -216,10 +230,10 @@ public class ServiceSettings extends AppCompatActivity {
 
 
         ArrayList<String> arrayList = this.getIntent().getStringArrayListExtra("URLs");
-        if(arrayList != null) {
-            for (int i = 0; i < arrayList.size() && i < 6; i++) {
-                Glide.with(ServiceSettings.this).asBitmap().load(arrayList.get(i)).into(images.get(i));
-            }
+        if(!arrayList.isEmpty()) {
+            finalList = arrayList;
+            picNumber = 0;
+            Glide.with(ServiceSettings.this).asBitmap().load(arrayList.get(picNumber)).into(image);
         }
 
         rating = a.getRating();
@@ -229,14 +243,18 @@ public class ServiceSettings extends AppCompatActivity {
 
     // saves the images and saves the URL's
     private void saveImages(){
+        finalList = new ArrayList<>();
         for(int i = 0; i < imageList.size(); i++){
             FirebaseStorageHandler.savePicture(imageList.get(i), new FirebaseStorageHandler.ImageSaved() {
                 @Override
                 public void onComplete(Uri url) {
                     finalList.add(url.toString());
-                    Log.d("teste: " , url.toString());
+                    Log.d("teste" , url.toString());
                 }
             });
+            if(!finalList.isEmpty()) {
+                Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(0)).into(image);
+            }
         }
     }
 
@@ -245,6 +263,7 @@ public class ServiceSettings extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if(checkExternalStoragePermission()){
+                //finalList = new ArrayList<>();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setType("image/*");
@@ -293,9 +312,6 @@ public class ServiceSettings extends AppCompatActivity {
                 }
             }
             saveImages();
-            for (int i = 0; i < finalList.size() && i < 6; i++) {
-                Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(i)).into(images.get(i));
-            }
         }
     }
 

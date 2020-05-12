@@ -40,7 +40,7 @@ public class MyServices  extends AppCompatActivity {
         itemsList = new ArrayList<>();
 
 
-        loadMyServices();
+        //loadMyServices();
         addNew = findViewById(R.id.button8);
 
         addNew = findViewById(R.id.button8);
