@@ -126,7 +126,6 @@ public class Service extends AppCompatActivity {
             @Override
             public void onCallback(User user) {
                 if(user.getPhotoURL() != null && !user.getPhotoURL().equals("")) {
-                    picNumber = 0;
                     Glide.with(Service.this).asBitmap().load(user.getPhotoURL()).into(profilePic2);
                 }
                 username.setText(user.getName());
@@ -140,8 +139,10 @@ public class Service extends AppCompatActivity {
         description.setText(advert.getDescription());
         imageList = this.getIntent().getStringArrayListExtra("URLs");
         if(!imageList.isEmpty()){
+            picNumber = 0;
             Glide.with(Service.this).asBitmap().load(imageList.get(0)).into(servicePic);
         }
+        ratingBar.setRating((float)advert.getRating()/advert.getVoteCount());
     }
 
 }

@@ -212,8 +212,9 @@ public class ServiceSettings extends AppCompatActivity {
 
 
         String desc = title.getText().toString() + "\n" + description.getText().toString();
+        float priceValue = Float.parseFloat(String.valueOf(price.getText()));
 
-        return new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, desc, Integer.parseInt(price.getText().toString()), hourlyRate.isChecked(),finalList,rating,voteCount);
+        return new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, desc, priceValue , hourlyRate.isChecked(),finalList,rating,voteCount);
     }
 
     private void loadAdvert(){

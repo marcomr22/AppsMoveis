@@ -41,7 +41,6 @@ public class MyServices  extends AppCompatActivity {
 
 
         //loadMyServices();
-        addNew = findViewById(R.id.button8);
 
         addNew = findViewById(R.id.button8);
 

@@ -80,7 +80,7 @@ public class Advert implements Parcelable {
     private String ownerID;
     private Category category;
     private String description;
-    private int price;
+    private float price;
     private boolean hourly;
     private List<String> imagesURL;
     private int rating;
@@ -91,7 +91,7 @@ public class Advert implements Parcelable {
         ownerID = in.readString();
         category = Category.valueOf(in.readString());
         description = in.readString();
-        price = in.readInt();
+        price = in.readFloat();
         hourly = in.readByte() != 0;
         imagesURL = new ArrayList<>();
         in.readStringList(imagesURL);
@@ -122,7 +122,7 @@ public class Advert implements Parcelable {
         dest.writeString(ownerID);
        dest.writeString(category.name());
         dest.writeString(description);
-        dest.writeInt(price);
+        dest.writeFloat(price);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             dest.writeBoolean(hourly);
         }
@@ -133,7 +133,7 @@ public class Advert implements Parcelable {
 
     public Advert() {}
 
-    public Advert(String id, String ownerID, Category category, String description, int price, boolean hourly, List<String> imagesURL, int rating, int voteCount) {
+    public Advert(String id, String ownerID, Category category, String description, float price, boolean hourly, List<String> imagesURL, int rating, int voteCount) {
         this.id = id;
         this.ownerID = ownerID;
         this.category = category;
@@ -157,7 +157,7 @@ public class Advert implements Parcelable {
         return description;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
