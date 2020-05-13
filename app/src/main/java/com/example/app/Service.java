@@ -26,7 +26,7 @@ import models.User;
 
 public class Service extends AppCompatActivity {
 
-    private SearchView searchView;
+
     private ImageView profilePic5;
     private ImageView profilePic2;
     private RatingBar ratingBar;
@@ -55,8 +55,7 @@ public class Service extends AppCompatActivity {
         MyUser = oldIntent.getParcelableExtra("MyUser");
         advert = getIntent().getParcelableExtra("Advert");
 
-        searchView = findViewById(R.id.Search);
-        profilePic5 = findViewById(R.id.profilePic5);
+        //profilePic5 = findViewById(R.id.profilePic5);
         profilePic2 = findViewById(R.id.profilePic2);
         ratingBar = findViewById(R.id.ratingBar);
         username = findViewById(R.id.username2);
@@ -67,11 +66,11 @@ public class Service extends AppCompatActivity {
         left = findViewById(R.id.leftArrow);
         right = findViewById(R.id.rightArrow);
 
-        loadMyUser();
+       // loadMyUser();
         loadOwnerUser();
         loadService();
 
-        profilePic5.setOnClickListener(new View.OnClickListener() {
+        /*profilePic5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Service.this, Menu.class);
@@ -79,7 +78,7 @@ public class Service extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        */
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
