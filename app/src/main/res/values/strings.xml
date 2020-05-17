@@ -73,7 +73,8 @@
     <string name="service_title_hint">Write a title for your service</string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="service_picture">Service Picture</string>
-    <string name="type_password">In order to change your profile settings, please type your password</string>
+    <string name="type_password">In order to change your profile settings, please prove your authenticity</string>
     <string name="todo">TODO</string>
+    <string name="confirm_e_mail">Confirm E-mail</string>
 
 </resources>
