@@ -102,7 +102,8 @@ public class Profile extends AppCompatActivity {
         ChangeEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authHandler.ChangeEmail(Email, getApplicationContext());
+                Intent i = new Intent (Profile.this, Re_Authentication.class);
+                startActivity(i);
             }
         });
 
