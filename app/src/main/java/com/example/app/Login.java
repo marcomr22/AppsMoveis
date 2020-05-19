@@ -140,7 +140,7 @@ public class Login extends AppCompatActivity{
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account,getApplicationContext());
+                authHandler.firebaseAuthWithGoogle(account,getApplicationContext());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
@@ -148,7 +148,7 @@ public class Login extends AppCompatActivity{
             }
         }
     }
-
+/*
     public void firebaseAuthWithGoogle(final GoogleSignInAccount acct, final Context context) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -177,5 +177,5 @@ public class Login extends AppCompatActivity{
                         }
                     }
                 });
-    }
+    }*/
 }

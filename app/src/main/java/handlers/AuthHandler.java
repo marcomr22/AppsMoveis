@@ -368,7 +368,7 @@ public class AuthHandler {
             });
     }
 
-    /*
+
     public void firebaseAuthWithGoogle(final GoogleSignInAccount acct, final Context context) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -397,5 +397,5 @@ public class AuthHandler {
                          }
                     }
                 });
-    }*/
+    }
 }
