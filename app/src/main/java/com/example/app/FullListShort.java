@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,7 @@ public class FullListShort extends AppCompatActivity {
     private Advert.Category category = Advert.Category.ALL;
     private  FirestoreHandler firestoreHandler;
     private int position;
+    private int totalItems = 0;
     private LinearLayoutManager layoutManager = new LinearLayoutManager( FullListShort.this);
 
     @Override
@@ -99,8 +101,10 @@ public class FullListShort extends AppCompatActivity {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                Log.d("teste", "posição : "+position + "total items : " + totalItems);
+                if (!recyclerView.canScrollVertically(1) && (newState == RecyclerView.SCROLL_STATE_IDLE)) {
                     position = layoutManager.findFirstVisibleItemPosition();
+                    //Log.d("teste", "posição : "+position + "total items : " + totalItems);
                     loadServices();
                 }
             }
@@ -118,6 +122,7 @@ public class FullListShort extends AppCompatActivity {
                 }else {
                     for (Advert advert : list) {
                         itemsList.add(advert);
+                        totalItems++;
                     }
                 }
                 RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
