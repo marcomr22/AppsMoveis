@@ -44,7 +44,7 @@ public class Profile extends AppCompatActivity {
     private Button ChangePasswordButton;
     private Button DeleteAccountButton;
     private EditText PhoneNumber;
-    private EditText Email;
+    private TextView Email;
     private EditText Username;
     private AuthHandler authHandler;
     private ImageButton imageButton;

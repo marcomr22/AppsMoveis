@@ -65,7 +65,7 @@
     <string name="category_7">Event Planning</string>
     <string name="category_8"><![CDATA[Health & Beauty]]></string>
     <string name="category_9">Other</string>
-    <string name="category_service">Category of\nyour service:</string>
+    <string name="category_service">Select a category:</string>
     <string name="write_description">Write a detailed description of your service</string>
     <string name="add_pictures">Add some pictures of your work</string>
     <string name="hourly_rate">Hourly Rate</string>
@@ -76,13 +76,12 @@
     <string name="todo">TODO</string>
     <string name="confirm_e_mail">Confirm E-mail</string>
     <string name="icon_credits">Icons by</string>
-    <string name="credits11"><a href="https://www.flaticon.com/authors/freepik">Freepik</a>Freepik</string>
-    <string name="credits1">Freepik\nhttps://www.flaticon.com/authors/freepik</string>
-    <string name="credits2">Smashicons\nhttps://www.flaticon.com/authors/smashicons</string>
-    <string name="credits3">iconixar\nhttps://www.flaticon.com/authors/iconixar</string>
-    <string name="credits4">Pixelmeetup\nhttps://www.flaticon.com/authors/pixelmeetup</string>
-    <string name="credits5">Pixel perfect\nhttps://www.flaticon.com/authors/pixel-perfect</string>
-    <string name="credits6">monkik\nhttps://www.flaticon.com/authors/monkik</string>
+    <string name="credits1"><a href="https://www.flaticon.com/authors/freepik">Freepik</a></string>
+    <string name="credits2"><a href="https://www.flaticon.com/authors/smashicons">Smashicons</a></string>
+    <string name="credits3"><a href="https://www.flaticon.com/authors/iconixar">iconixar</a></string>
+    <string name="credits4"><a href="https://www.flaticon.com/authors/pixelmeetup">Pixelmeetup</a></string>
+    <string name="credits5"><a href=" https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a></string>
+    <string name="credits6"><a href="https://www.flaticon.com/authors/monkik">monkik</a></string>
     <string name="service_title_hint">Write a title for your service</string>
 
 </resources>

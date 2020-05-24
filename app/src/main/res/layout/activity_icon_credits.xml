@@ -21,14 +21,14 @@
 
     <TextView
         android:id="@+id/credits1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:linksClickable="true"
         android:longClickable="true"
-        android:text="@string/credits11"
+        android:text="@string/credits1"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/credits2"
@@ -38,8 +38,8 @@
 
     <TextView
         android:id="@+id/credits2"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
@@ -53,7 +53,7 @@
 
     <TextView
         android:id="@+id/credits3"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
@@ -68,7 +68,7 @@
 
     <TextView
         android:id="@+id/credits4"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
@@ -83,7 +83,7 @@
 
     <TextView
         android:id="@+id/credits5"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
@@ -98,12 +98,12 @@
 
     <TextView
         android:id="@+id/credits6"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/credits6"
         android:textColor="#000000"
         android:textSize="16sp"

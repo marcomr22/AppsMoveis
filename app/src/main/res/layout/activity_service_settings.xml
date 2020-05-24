@@ -41,7 +41,7 @@
 
     <ImageButton
         android:id="@+id/servicePic2"
-        android:layout_width="282dp"
+        android:layout_width="260dp"
         android:layout_height="130dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="#FFFFFF"
@@ -56,8 +56,8 @@
     <Button
         android:id="@+id/confirmService"
         style="@android:style/Widget.Button.Small"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -65,7 +65,7 @@
         android:text="@string/confirm"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelService"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +75,8 @@
     <Button
         android:id="@+id/deleteService"
         style="@android:style/Widget.Button.Small"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
@@ -84,7 +84,7 @@
         android:text="@string/delete"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cancelService"
@@ -94,8 +94,8 @@
     <Button
         android:id="@+id/cancelService"
         style="@android:style/Widget.Button.Small"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -104,7 +104,7 @@
         android:text="@string/cancel"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/deleteService"
         app:layout_constraintHorizontal_bias="0.531"
@@ -114,11 +114,10 @@
 
     <TextView
         android:id="@+id/categories_prompt"
-        android:layout_width="121dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:lines="2"
+        android:layout_marginTop="16dp"
         android:text="@string/category_service"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -132,8 +131,7 @@
         android:id="@+id/service_categories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="-8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/price"
         app:layout_constraintEnd_toStartOf="@+id/editText4"
@@ -144,64 +142,82 @@
             android:id="@+id/carpentry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_1"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/mechanics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_2"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/technology"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_3"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/cooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_4"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/child_care"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_5"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/pet_care"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_6"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/event_planning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_7"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/health_beauty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_8"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
 
         <RadioButton
             android:id="@+id/other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:text="@string/category_9"
-            android:textSize="12sp" />
+            android:textSize="22sp" />
     </RadioGroup>
 
     <EditText
@@ -211,7 +227,6 @@
         android:layout_height="280dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
@@ -230,13 +245,12 @@
     <TextView
         android:id="@+id/pictures_prompt"
         android:layout_width="274dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="8dp"
-        android:lines="2"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/add_pictures"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/servicePic2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -248,9 +262,10 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="64dp"
         android:text="@string/hourly_rate"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/pictures_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/price"
@@ -261,12 +276,12 @@
         android:layout_width="105dp"
         android:layout_height="45dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/pricing"
         android:inputType="numberDecimal"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/pictures_prompt"
         app:layout_constraintEnd_toStartOf="@+id/hour_rate"
         app:layout_constraintStart_toStartOf="parent"
