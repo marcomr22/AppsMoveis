@@ -14,7 +14,9 @@
         android:backgroundTint="#5AAAEA"
         android:text="@string/confirm"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/pass_recovery2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +27,7 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/forgot_your_password"
         android:textAllCaps="false"
@@ -32,14 +35,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <ImageView
         android:id="@+id/app_icon2"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
         android:contentDescription="@string/app_icon"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +56,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint_password"
@@ -68,9 +70,8 @@
     <TextView
         android:id="@+id/textView10"
         android:layout_width="277dp"
-        android:layout_height="63dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/type_password"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -85,7 +86,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -93,21 +94,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
         android:id="@+id/newEmail_2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/confirm_e_mail"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/password2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newEmail"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/newEmail" />
 </androidx.constraintlayout.widget.ConstraintLayout>
