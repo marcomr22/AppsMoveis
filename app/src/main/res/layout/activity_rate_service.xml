@@ -11,6 +11,8 @@
         android:layout_width="392dp"
         android:layout_height="128dp"
         android:layout_margin="10dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rateService">
@@ -61,7 +63,7 @@
         style="@style/Base.Widget.MaterialComponents.TextInputEditText"
         android:layout_width="321dp"
         android:layout_height="299dp"
-        android:layout_marginBottom="144dp"
+        android:layout_marginTop="10dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
@@ -70,16 +72,17 @@
         android:singleLine="false"
         android:textAlignment="textStart"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/confirmService"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
 
     <Button
         android:id="@+id/confirmService"
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#5AAAEA"
         android:text="@string/confirm"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -95,20 +98,21 @@
         android:id="@+id/rateService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:lineSpacingExtra="20sp"
         android:text="@string/rate_this_service"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

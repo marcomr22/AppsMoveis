@@ -27,11 +27,16 @@
 
     <Button
         android:id="@+id/button8"
+        style="@android:style/Widget.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
         android:text="@string/add_new_service"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:backgroundTint="#64B5F6"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

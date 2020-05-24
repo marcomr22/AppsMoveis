@@ -42,7 +42,7 @@
     <ImageButton
         android:id="@+id/servicePic2"
         android:layout_width="282dp"
-        android:layout_height="180dp"
+        android:layout_height="130dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="#FFFFFF"
         android:contentDescription="@string/service_picture"
@@ -57,7 +57,7 @@
         android:id="@+id/confirmService"
         style="@android:style/Widget.Button.Small"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -76,7 +76,7 @@
         android:id="@+id/deleteService"
         style="@android:style/Widget.Button.Small"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
@@ -95,7 +95,7 @@
         android:id="@+id/cancelService"
         style="@android:style/Widget.Button.Small"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -115,25 +115,26 @@
     <TextView
         android:id="@+id/categories_prompt"
         android:layout_width="121dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:lines="2"
         android:text="@string/category_service"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/service_categories"
+        app:layout_constraintEnd_toStartOf="@+id/serviceTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/service_categories"
-        android:layout_width="140dp"
-        android:layout_height="290dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/price"
         app:layout_constraintEnd_toStartOf="@+id/editText4"
         app:layout_constraintStart_toStartOf="parent"
@@ -144,79 +145,73 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_1"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="89dp" />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/mechanics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_2"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="121dp" />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/technology"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_3"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="153dp" />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/cooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_4"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="185dp" />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/child_care"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/category_5" />
+            android:text="@string/category_5"
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/pet_care"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_6"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="249dp" />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/event_planning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_7"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="281dp" />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/health_beauty"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_8"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="313dp" />
+            android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_9"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="345dp" />
+            android:textSize="12sp" />
     </RadioGroup>
 
     <EditText
         android:id="@+id/editText4"
         style="@style/Base.Widget.MaterialComponents.AutoCompleteTextView"
-        android:layout_width="227dp"
-        android:layout_height="340dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="180dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
@@ -230,7 +225,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/service_categories"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/serviceTitle" />
 
     <TextView
         android:id="@+id/pictures_prompt"
@@ -268,7 +263,6 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/pricing"
@@ -276,15 +270,24 @@
         app:layout_constraintBottom_toTopOf="@+id/pictures_prompt"
         app:layout_constraintEnd_toStartOf="@+id/hour_rate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/service_categories" />
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
-    <TextView
+    <EditText
         android:id="@+id/serviceTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/todo"
-        android:textColor="#FFFFFF"
+        style="@style/Base.Widget.MaterialComponents.AutoCompleteTextView"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/service_title_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#787878"
+        app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/categories_prompt"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,7 @@ public class Menu extends AppCompatActivity {
     private Button MyServicesButton;
     private Button HiredServicesButton;
     private Button LogOutButton;
+    private Button CreditsButton;
     private AuthHandler authHandler;
     private ImageButton imageButton;
     private User MyUser;
@@ -42,6 +43,7 @@ public class Menu extends AppCompatActivity {
         MyServicesButton = findViewById(R.id.MyServicesButton);
         HiredServicesButton = findViewById(R.id.HiredServicesButton);
         LogOutButton = findViewById(R.id.LogOutButton);
+        CreditsButton = findViewById(R.id.button6);
 
         authHandler = new AuthHandler();
 
@@ -74,6 +76,14 @@ public class Menu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent (Menu.this, MyServices.class);
                 i.putExtra("MyUser", MyUser);
+                startActivity(i);
+            }
+        });
+
+        CreditsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent (Menu.this, IconCredits.class);
                 startActivity(i);
             }
         });
