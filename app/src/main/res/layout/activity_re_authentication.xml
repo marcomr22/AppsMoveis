@@ -38,19 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 
-    <ImageView
-        android:id="@+id/app_icon2"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/app_icon"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/g1049" />
-
     <EditText
         android:id="@+id/password2"
         android:layout_width="300dp"
@@ -60,7 +47,7 @@
         android:ems="10"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -71,7 +58,7 @@
         android:id="@+id/textView10"
         android:layout_width="277dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/type_password"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -79,7 +66,7 @@
         app:layout_constraintBottom_toTopOf="@+id/newEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_icon2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/newEmail"

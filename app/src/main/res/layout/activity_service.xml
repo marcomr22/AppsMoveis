@@ -258,6 +258,7 @@
         android:contentDescription="@string/service_picture"
         android:scaleType="fitCenter"
         android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toTopOf="@+id/price"
         app:layout_constraintEnd_toStartOf="@+id/rightArrow"
         app:layout_constraintStart_toEndOf="@+id/leftArrow"
         app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />

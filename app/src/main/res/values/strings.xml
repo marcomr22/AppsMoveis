@@ -80,8 +80,8 @@
     <string name="credits2"><a href="https://www.flaticon.com/authors/smashicons">Smashicons</a></string>
     <string name="credits3"><a href="https://www.flaticon.com/authors/iconixar">iconixar</a></string>
     <string name="credits4"><a href="https://www.flaticon.com/authors/pixelmeetup">Pixelmeetup</a></string>
-    <string name="credits5"><a href=" https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a></string>
+    <string name="credits5"><a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a></string>
     <string name="credits6"><a href="https://www.flaticon.com/authors/monkik">monkik</a></string>
-    <string name="service_title_hint">Write a title for your service</string>
+    <string name="service_title_hint">Title your service</string>
 
 </resources>
