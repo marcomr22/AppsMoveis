@@ -11,6 +11,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,9 +101,8 @@ public class Profile extends AppCompatActivity {
                 if(MyUser.getName().contentEquals(Username.getText())){
                     Toast.makeText(Profile.this, "Please insert a different Username.", Toast.LENGTH_SHORT).show();
                 } else {
-                    User u = new User(MyUser.getuID(), Username.getText().toString(), MyUser.getEmail(),MyUser.getPhotoURL(),MyUser.getRating(),MyUser.getNumber());
-                    MyUser = u;
-                    FirestoreHandler.saveUser(u);
+                    MyUser.setName(Username.getText().toString());
+                    FirestoreHandler.saveUser(MyUser);
                     Toast.makeText(Profile.this, "The Username has been Updated.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -109,9 +114,8 @@ public class Profile extends AppCompatActivity {
                 if(MyUser.getNumber().contentEquals(PhoneNumber.getText())) {
                     Toast.makeText(Profile.this, "Please insert a different Phone Number", Toast.LENGTH_SHORT).show();
                 } else {
-                    User u = new User(MyUser.getuID(), MyUser.getName(), MyUser.getEmail(),MyUser.getPhotoURL(),MyUser.getRating(),PhoneNumber.getText().toString());
-                    MyUser = u;
-                    FirestoreHandler.saveUser(u);
+                    MyUser.setNumber(PhoneNumber.getText().toString());
+                    FirestoreHandler.saveUser(MyUser);
                     Toast.makeText(Profile.this, "The Phone Number has been Updated.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -168,7 +172,7 @@ public class Profile extends AppCompatActivity {
 
            try {
                InputStream stream = getContentResolver().openInputStream(data.getData());
-               Bitmap image = BitmapFactory.decodeStream(stream);
+               Bitmap image = getRoundedCroppedBitmap(BitmapFactory.decodeStream(stream));
                ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
                image.compress(Bitmap.CompressFormat.PNG, 100, stream2);
                imageButton.setImageBitmap(image);
@@ -190,6 +194,43 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+    private Bitmap getRoundedCroppedBitmap(Bitmap bitmap) {
+        int widthLight = bitmap.getWidth();
+        int heightLight = bitmap.getHeight();
+
+        Bitmap output;
+
+        if(heightLight < widthLight) {
+
+            output = Bitmap.createBitmap(bitmap.getHeight(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(output);
+            Paint paintColor = new Paint();
+            paintColor.setFlags(Paint.ANTI_ALIAS_FLAG);
+            RectF rectF = new RectF(new Rect(0, 0, heightLight, heightLight));
+
+            canvas.drawRoundRect(rectF, heightLight / 2, heightLight / 2, paintColor);
+
+            Paint paintImage = new Paint();
+            paintImage.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+            canvas.drawBitmap(bitmap, -(widthLight - heightLight) / 2, 0, paintImage);
+
+        } else {
+            output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getWidth(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(output);
+            Paint paintColor = new Paint();
+            paintColor.setFlags(Paint.ANTI_ALIAS_FLAG);
+            RectF rectF = new RectF(new Rect(0, 0, widthLight, widthLight));
+
+            canvas.drawRoundRect(rectF, widthLight / 2, widthLight / 2, paintColor);
+
+            Paint paintImage = new Paint();
+            paintImage.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+            canvas.drawBitmap(bitmap, 0, -(heightLight - widthLight) / 2, paintImage);
+        }
+
+        return output;
+    }
+
     private void verifyPermission(){
         String permission = Manifest.permission.READ_EXTERNAL_STORAGE;
         ActivityCompat.requestPermissions(Profile.this, new String[]{permission},1);
@@ -205,4 +246,11 @@ public class Profile extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+       // super.onBackPressed();
+        Intent i = new Intent (Profile.this, FullListShort.class);
+        i.putExtra("MyUser", MyUser);
+        startActivity(i);
+    }
 }

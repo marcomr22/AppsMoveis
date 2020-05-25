@@ -103,4 +103,12 @@ public class MyServices  extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        Intent i = new Intent (MyServices.this, Menu.class);
+        i.putExtra("MyUser", MyUser);
+        startActivity(i);
+    }
+
 }

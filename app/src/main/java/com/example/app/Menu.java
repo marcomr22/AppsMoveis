@@ -37,7 +37,6 @@ public class Menu extends AppCompatActivity {
         MyUser = new User();
         MyUser = oldIntent.getParcelableExtra("MyUser");
 
-
         imageButton = findViewById(R.id.profilePic4);
         ProfileSettingsButton = findViewById(R.id.ProfileSettingsButton);
         MyServicesButton = findViewById(R.id.MyServicesButton);

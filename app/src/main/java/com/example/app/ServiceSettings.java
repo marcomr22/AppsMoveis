@@ -333,4 +333,12 @@ public class ServiceSettings extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        Intent i = new Intent (ServiceSettings.this, MyServices.class);
+        i.putExtra("MyUser", MyUser);
+        startActivity(i);
+    }
+
 }
