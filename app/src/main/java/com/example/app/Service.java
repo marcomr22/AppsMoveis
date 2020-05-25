@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -33,10 +34,12 @@ public class Service extends AppCompatActivity {
     private TextView username;
     private TextView phone;
     private TextView email;
+    private TextView price;
     private TextView description;
     private ImageButton servicePic;
     private ImageButton left;
     private ImageButton right;
+    private CheckBox hourly;
 
     private User MyUser;
     private Advert advert;
@@ -65,6 +68,8 @@ public class Service extends AppCompatActivity {
         servicePic = findViewById(R.id.servicePic);
         left = findViewById(R.id.leftArrow);
         right = findViewById(R.id.rightArrow);
+        price = findViewById(R.id.price);
+        hourly = findViewById(R.id.hour_rate2);
 
        // loadMyUser();
         loadOwnerUser();
@@ -137,6 +142,8 @@ public class Service extends AppCompatActivity {
     private void loadService(){
         description.setText(advert.getDescription());
         imageList = this.getIntent().getStringArrayListExtra("URLs");
+        price.setText(String.valueOf(advert.getPrice()));
+        hourly.setChecked(advert.isHourly());
         if(!imageList.isEmpty()){
             picNumber = 0;
             Glide.with(Service.this).asBitmap().load(imageList.get(0)).into(servicePic);

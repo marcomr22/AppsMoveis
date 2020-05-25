@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -88,7 +89,33 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        ChangeUsernameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MyUser.getName().contentEquals(Username.getText())){
+                    Toast.makeText(Profile.this, "Please insert a different Username.", Toast.LENGTH_SHORT).show();
+                } else {
+                    User u = new User(MyUser.getuID(), Username.getText().toString(), MyUser.getEmail(),MyUser.getPhotoURL(),MyUser.getRating(),MyUser.getNumber());
+                    MyUser = u;
+                    FirestoreHandler.saveUser(u);
+                    Toast.makeText(Profile.this, "The Username has been Updated.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
+        ChangeContactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MyUser.getNumber().contentEquals(PhoneNumber.getText())) {
+                    Toast.makeText(Profile.this, "Please insert a different Phone Number", Toast.LENGTH_SHORT).show();
+                } else {
+                    User u = new User(MyUser.getuID(), MyUser.getName(), MyUser.getEmail(),MyUser.getPhotoURL(),MyUser.getRating(),PhoneNumber.getText().toString());
+                    MyUser = u;
+                    FirestoreHandler.saveUser(u);
+                    Toast.makeText(Profile.this, "The Phone Number has been Updated.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         ChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
