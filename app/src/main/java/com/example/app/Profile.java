@@ -1,12 +1,11 @@
 package com.example.app;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,7 +18,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,8 +27,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -248,7 +244,7 @@ public class Profile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-       // super.onBackPressed();
+        // super.onBackPressed();
         Intent i = new Intent (Profile.this, FullListShort.class);
         i.putExtra("MyUser", MyUser);
         startActivity(i);

@@ -151,20 +151,20 @@ public class FirestoreHandler {
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
                         .startAfter(docSnapshot)
-                        .limit(1);
+                        .limit(5);
             }else if(this.category.equals(Advert.Category.ALL)){
                 query = bd.collectionGroup("adverts")
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
                         .startAfter(docSnapshot)
-                        .limit(1);
+                        .limit(5);
             }else{
                 query = bd.collectionGroup("adverts")
                         .whereEqualTo("category", this.category)
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
                         .startAfter(docSnapshot)
-                        .limit(1);
+                        .limit(5);
             }
         }else{
             if(user!=null){
@@ -173,18 +173,18 @@ public class FirestoreHandler {
                         .whereEqualTo("uID", user)
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
-                        .limit(1);
+                        .limit(5);
             }else if( this.category.equals(Advert.Category.ALL)){
                 query = bd.collectionGroup("adverts")
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
-                        .limit(1);
+                        .limit(5);
             }else{
                 query = bd.collectionGroup("adverts")
                         .whereEqualTo("category", this.category)
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
-                        .limit(1);
+                        .limit(5);
             }
         }
         return query;
