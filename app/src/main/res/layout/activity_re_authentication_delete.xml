@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="277dp"
+        android:layout_width="227dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/to_delete_your_account_verify_your_authenticity"
