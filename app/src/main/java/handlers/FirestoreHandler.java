@@ -139,20 +139,10 @@ public class FirestoreHandler {
     }
 
     private Query createQuery(){
-        Query query = bd.collectionGroup("adverts")
-                .orderBy("voteCount", Query.Direction.DESCENDING)
-                .orderBy("rating", Query.Direction.DESCENDING)
-                .limit(1);
+        Query query;
         //Todas de um utilizador; Categoria todos ou uma especifico
         if(docSnapshot != null){
-            if(user!=null){
-                query = bd.collectionGroup("adverts")
-                        .whereEqualTo("uID", user)
-                        .orderBy("voteCount", Query.Direction.DESCENDING)
-                        .orderBy("rating", Query.Direction.DESCENDING)
-                        .startAfter(docSnapshot)
-                        .limit(5);
-            }else if(this.category.equals(Advert.Category.ALL)){
+            if(this.category.equals(Advert.Category.ALL)){
                 query = bd.collectionGroup("adverts")
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
@@ -167,14 +157,7 @@ public class FirestoreHandler {
                         .limit(5);
             }
         }else{
-            if(user!=null){
-                Log.d("create query", "user" + user);
-                query = bd.collectionGroup("adverts")
-                        .whereEqualTo("uID", user)
-                        .orderBy("voteCount", Query.Direction.DESCENDING)
-                        .orderBy("rating", Query.Direction.DESCENDING)
-                        .limit(5);
-            }else if( this.category.equals(Advert.Category.ALL)){
+            if( this.category.equals(Advert.Category.ALL)){
                 query = bd.collectionGroup("adverts")
                         .orderBy("voteCount", Query.Direction.DESCENDING)
                         .orderBy("rating", Query.Direction.DESCENDING)
@@ -242,6 +225,35 @@ public class FirestoreHandler {
                         for(DocumentSnapshot d: snapList)
                             list.add(d.toObject(Advert.class));
 //                        Log.d("test fh", query.toString());
+                        callback.onCallback(list);
+
+                    }
+                });
+    }
+
+    public static void getAdvertsByAdverId(String adverId, final QueryCallback callback){
+        Query query = FirebaseFirestore.getInstance().collectionGroup("adverts")
+                .whereEqualTo("id", adverId)
+                .orderBy("voteCount", Query.Direction.DESCENDING)
+                .orderBy("rating", Query.Direction.DESCENDING);
+
+        query.get()
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG_READ_FAILURE, "Advert query" + e.toString());
+
+                    }
+                })
+                .addOnSuccessListener( new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Log.d(TAG_READ_SUCCESSFUL, "Advert query: " + queryDocumentSnapshots.toString());
+                        List<DocumentSnapshot> snapList = queryDocumentSnapshots.getDocuments();
+                        List<Advert> list = new ArrayList<>();
+                        for(DocumentSnapshot d: snapList) {
+                            list.add(d.toObject(Advert.class));
+                        }
                         callback.onCallback(list);
 
                     }
