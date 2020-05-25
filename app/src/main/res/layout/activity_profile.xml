@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:autofillHints=""
         android:hint="@string/hint_username"
-        android:inputType="text"
+        android:inputType="textPersonName|text|textCapSentences"
         android:lineSpacingExtra="0sp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
