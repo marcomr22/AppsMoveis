@@ -75,15 +75,17 @@
     <string name="type_password">To change your email, insert the new email and your password to prove your authenticity</string>
     <string name="todo">TODO</string>
     <string name="confirm_e_mail">Confirm E-mail</string>
-    <string name="icon_credits">Icons by</string>
-    <string name="credits_site"><a href="https://www.flaticon.com">Sourced from flaticon:</a></string>
-    <string name="credits1"><a href="https://www.flaticon.com/authors/freepik">Freepik</a></string>
-    <string name="credits2"><a href="https://www.flaticon.com/authors/smashicons">Smashicons</a></string>
-    <string name="credits3"><a href="https://www.flaticon.com/authors/iconixar">iconixar</a></string>
-    <string name="credits4"><a href="https://www.flaticon.com/authors/pixelmeetup">Pixelmeetup</a></string>
-    <string name="credits5"><a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a></string>
-    <string name="credits6"><a href="https://www.flaticon.com/authors/monkik">monkik</a></string>
     <string name="service_title_hint">Title your service</string>
     <string name="to_delete_your_account_verify_your_authenticity">To delete your account verify your authenticity</string>
+
+    <string name="icon_credits">Icons by</string>
+    <string name="credits_site"><a href="https://www.flaticon.com">Sourced from flaticon:</a></string>
+    <string name="credits1"><a href="https://www.flaticon.com/authors/eucalyp">Eucalyp</a></string>
+    <string name="credits2"><a href="https://www.flaticon.com/authors/freepik">Freepik</a></string>
+    <string name="credits3"><a href="https://www.flaticon.com/authors/monkik">monkik</a></string>
+    <string name="credits4"><a href="https://www.flaticon.com/authors/iconixar">iconixar</a></string>
+    <string name="credits5"><a href="https://www.flaticon.com/authors/pixelmeetup">Pixelmeetup</a></string>
+    <string name="credits6"><a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a></string>
+    <string name="credits7"><a href="https://www.flaticon.com/authors/smashicons">Smashicons</a></string>
 
 </resources>
