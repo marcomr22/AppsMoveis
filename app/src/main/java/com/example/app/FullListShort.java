@@ -38,7 +38,7 @@ public class FullListShort extends AppCompatActivity {
     private Spinner spinner;
     private String[] CategoryNames = {"Carpentry","Mechanics","Technology","Cooking","Child Care","Pet Care","Event Planning","Health & Beauty","Other","All"};
     private int[] images = {R.drawable.icon_carpentry,R.drawable.icon_mecanics,R.drawable.icon_tecnology,R.drawable.icon_cooking,R.drawable.icon_child_care,
-                            R.drawable.icon_pet_care,R.drawable.icon_event_planning,R.drawable.icon_health_beauty,R.drawable.icon_others,R.drawable.ic_launcher_foreground};
+                            R.drawable.icon_pet_care,R.drawable.icon_event_planning,R.drawable.icon_health_beauty,R.drawable.icon_others,R.drawable.icon_all};
     private CustomAdapter adapter;
     private User MyUser;
     private Advert.Category category = Advert.Category.ALL;
@@ -118,7 +118,7 @@ public class FullListShort extends AppCompatActivity {
             @Override
             public void onCallback(List<Advert> list) {
                 if(list.isEmpty()){
-                    Toast.makeText(FullListShort.this, "No more Services available. Please try again later.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(FullListShort.this, "No more Services available. Please try again later.", Toast.LENGTH_SHORT).show();
                 }else {
                     for (Advert advert : list) {
                         itemsList.add(advert);
