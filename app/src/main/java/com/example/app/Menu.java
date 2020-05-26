@@ -79,6 +79,15 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        HiredServicesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent (Menu.this, HiredServices.class);
+                i.putExtra("MyUser", MyUser);
+                startActivity(i);
+            }
+        });
+
         CreditsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

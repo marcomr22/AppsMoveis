@@ -1,5 +1,6 @@
 package models;
 
+import android.icu.text.CaseMap;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -60,12 +61,16 @@ public class Advert implements Parcelable {
                 case "COOKING":
                     return Category.COOKING;
                 case "CHILD":
+                case "CHILD_CARE":
                     return Category.CHILD;
                 case "PET":
+                case "PET_CARE":
                     return Category.PET;
                 case "EVENT":
+                case "EVENT PLANNING":
                     return Category.EVENT;
                 case "HEALTH":
+                case "HEALTH & BEAUTY":
                     return Category.HEALTH;
                 case "OTHER":
                     return Category.OTHER;

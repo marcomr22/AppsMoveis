@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -40,6 +41,7 @@ public class Service extends AppCompatActivity {
     private ImageButton left;
     private ImageButton right;
     private CheckBox hourly;
+    private Button hire;
 
     private User MyUser;
     private Advert advert;
@@ -55,7 +57,7 @@ public class Service extends AppCompatActivity {
         setContentView(R.layout.activity_service);
 
         Intent oldIntent = this.getIntent();
-        MyUser = oldIntent.getParcelableExtra("MyUser");
+        loadMyUser();
         advert = getIntent().getParcelableExtra("Advert");
 
         //profilePic5 = findViewById(R.id.profilePic5);
@@ -70,20 +72,12 @@ public class Service extends AppCompatActivity {
         right = findViewById(R.id.rightArrow);
         price = findViewById(R.id.price);
         hourly = findViewById(R.id.hour_rate2);
+        hire = findViewById(R.id.comments2);
 
        // loadMyUser();
         loadOwnerUser();
         loadService();
 
-        /*profilePic5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Service.this, Menu.class);
-                intent.putExtra("MyUser", MyUser);
-                startActivity(intent);
-            }
-        });
-        */
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +105,23 @@ public class Service extends AppCompatActivity {
                 }
             }
         });
+
+        hire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MyUser.getHiredServices() == null){
+                    MyUser.setHiredServices(new ArrayList<String>());
+                }
+                if(!MyUser.getHiredServices().contains(advert.getId())) {
+                    MyUser.addHiredService(advert.getId());
+                    FirestoreHandler.saveUser(MyUser);
+                    Intent i = new Intent(Service.this, FullListShort.class);
+                    i.putExtra("MyUser", MyUser);
+                    startActivity(i);
+                }
+            }
+        });
+
     }
 
     private void loadMyUser(){

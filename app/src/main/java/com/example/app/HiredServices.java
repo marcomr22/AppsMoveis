@@ -10,6 +10,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
+import handlers.AuthHandler;
 import handlers.FirestoreHandler;
 import models.Advert;
 import models.User;
@@ -34,26 +35,35 @@ public class HiredServices extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv);
         itemsList = new ArrayList<>();
 
-        //loadServices();
-
-    }
-
-    //Devia pedir os meus serviços mas pede os serviços de uma dada categoria
-    private void loadMyServices(){
-        FirestoreHandler firestoreHandler = new FirestoreHandler(HiredServices.this, Advert.Category.ALL, MyUser.getuID());
-        firestoreHandler.getAdverts(new FirestoreHandler.QueryCallback() {
+        FirestoreHandler.getUser(AuthHandler.getUser().getUid(), new FirestoreHandler.UserCallback() {
             @Override
-            public void onCallback(List<Advert> list) {
-                for (Advert advert : list) {
-                    itemsList.add(advert);
-                }
-                LinearLayoutManager layoutManager = new LinearLayoutManager( HiredServices.this);
-                RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
-                ItemAdapter adapter = new ItemAdapter(HiredServices.this, itemsList, RateService.class);
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(rvLiLayoutManager);
+            public void onCallback(User user) {
+                MyUser = user;
+                loadMyServices();
             }
         });
 
+
+
+
+    }
+
+    //Pede os Hired Services todos do utilizador
+    private void loadMyServices(){
+        for (String AID: MyUser.getHiredServices()) {
+            FirestoreHandler.getAdvertsByAdverId(AID, new FirestoreHandler.QueryCallback() {
+                @Override
+                public void onCallback(List<Advert> list) {
+                for (Advert advert : list) {
+                    itemsList.add(advert);
+                }
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(HiredServices.this);
+                    RecyclerView.LayoutManager rvLiLayoutManager = layoutManager;
+                    ItemAdapter adapter = new ItemAdapter(HiredServices.this, itemsList, RateService.class);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(rvLiLayoutManager);
+                }
+            });
+        }
     }
 }

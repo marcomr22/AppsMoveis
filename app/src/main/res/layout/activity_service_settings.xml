@@ -175,7 +175,7 @@
             android:textSize="22sp" />
 
         <RadioButton
-            android:id="@+id/child_care"
+            android:id="@+id/child"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleX="0.5"
@@ -184,7 +184,7 @@
             android:textSize="22sp" />
 
         <RadioButton
-            android:id="@+id/pet_care"
+            android:id="@+id/pet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleX="0.5"
@@ -193,7 +193,7 @@
             android:textSize="22sp" />
 
         <RadioButton
-            android:id="@+id/event_planning"
+            android:id="@+id/event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleX="0.5"
@@ -202,7 +202,7 @@
             android:textSize="22sp" />
 
         <RadioButton
-            android:id="@+id/health_beauty"
+            android:id="@+id/health"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleX="0.5"

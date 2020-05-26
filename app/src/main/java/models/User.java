@@ -3,7 +3,9 @@ package models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class User implements Parcelable {
@@ -14,6 +16,7 @@ public class User implements Parcelable {
     private String photoURL;
     private double rating;
     private String number;
+    private List<String> hired;
 
     public User() {
     }
@@ -25,6 +28,7 @@ public class User implements Parcelable {
         this.photoURL = photoURL;
         this.rating = rating;
         this.number = number;
+        this.hired = new ArrayList<>();
     }
 
     protected User(Parcel in) {
@@ -34,6 +38,7 @@ public class User implements Parcelable {
         photoURL = in.readString();
         rating = in.readDouble();
         number = in.readString();
+      // hired = in.createStringArrayList();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -92,6 +97,16 @@ public class User implements Parcelable {
         return email;
     }
 
+    public void setHiredServices(ArrayList<String> list) {
+        this.hired = list;
+    }
+
+    public List<String> getHiredServices() {
+        return hired;
+    }
+
+    public void addHiredService(String AID){ hired.add(AID); }
+
     @Override
     public String toString() {
         return "User{" +
@@ -117,5 +132,6 @@ public class User implements Parcelable {
         dest.writeString(photoURL);
         dest.writeDouble(rating);
         dest.writeString(number);
+//        dest.readStringList(hired);
     }
 }

@@ -171,21 +171,7 @@ public class ServiceSettings extends AppCompatActivity {
     private String generateAID(){
         return UUID.randomUUID().toString();
     }
-    /*
-    //Creates a random AdvertID
-    private String generateAID(){
-        String aid;
-        String uid = MyUser.getuID();
-        Random r = new Random();
-        byte[] array = new byte[10];
-        int beg = r.nextInt(uid.length()-1);
-        r.nextBytes(array);
-        String aux = uid.substring(beg);
-        String extra = new String(array, Charset.forName("UTF-8"));
-        aid = uid + aux.hashCode() + extra;
-        return aid;
-    }
-*/
+
     //This functions gets all the info in the UI
     public Advert gatherUiInfo() {
 
@@ -203,9 +189,8 @@ public class ServiceSettings extends AppCompatActivity {
             Toast.makeText(this, "No Price", Toast.LENGTH_SHORT).show();
             return this.a;
         }
+
         category = Category.convert(radioButton.getText().toString().toUpperCase());
-
-
 
         //Load das URL para cada Imagem
         for (String s: finalList) Log.d("teste", "URL no final vectot: " + s);
