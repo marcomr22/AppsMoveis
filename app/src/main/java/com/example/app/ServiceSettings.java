@@ -297,6 +297,7 @@ public class ServiceSettings extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+            //Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(0)).into(image);
             saveImages();
         }
     }
