@@ -159,22 +159,43 @@ public class AuthHandler {
         return user;
     }
 
-    public void deleteUser(final Context context) {
+    public void deleteUser(EditText password, final Context context) {
         Log.d(TAG, "Delete User");
+        String password_aux = password.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
         final String uid_aux = user.getUid();
-        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        if (password_aux.isEmpty()) {
+            password.setError("Please enter your password");
+            password.requestFocus();
+            return;
+        }
+
+        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), password_aux);
+
+        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    FirestoreHandler.deleteUser(uid_aux);
-                    Toast.makeText(context, "User deleted successfully", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(context, Login.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(i);
-
-                } else {
+                if (task.isSuccessful()){
+                    Log.d(TAG, "User re-authenticated.");
+                    user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                FirestoreHandler.deleteUser(uid_aux);
+                                Toast.makeText(context, "User deleted successfully", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(context, Login.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
+                            }
+                            else{
+                                Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+                else{
                     Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -266,6 +287,7 @@ public class AuthHandler {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
+                    SignOut(context);
                     Toast.makeText(context, "Please check your email for the instructions", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, Login.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

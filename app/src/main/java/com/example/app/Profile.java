@@ -137,8 +137,7 @@ public class Profile extends AppCompatActivity {
         DeleteAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authHandler.deleteUser(getApplicationContext());
-                Intent i = new Intent (Profile.this, Login.class);
+                Intent i = new Intent (Profile.this, Re_authentication_Delete.class);
                 startActivity(i);
             }
         });

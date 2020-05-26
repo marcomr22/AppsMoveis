@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".IconCredits"></activity>
         <activity android:name=".Re_Authentication" />
+        <activity android:name=".Re_authentication_Delete" />
         <activity android:name=".ServiceSettings" />
         <activity android:name=".RateService" />
         <activity android:name=".HiredServices" />
