@@ -2,7 +2,6 @@ package com.example.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,17 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.storage.FirebaseStorage;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import handlers.AuthHandler;
-import handlers.FirestoreHandler;
-import models.Advert;
-import models.User;
-import recycleView_cardView.ItemAdapter;
-import recycleView_cardView.ItemModel;
+import com.example.app.handlers.AuthHandler;
+import com.example.app.handlers.FirestoreHandler;
+import com.example.app.models.Advert;
+import com.example.app.models.User;
+import com.example.app.recycleView_cardView.ItemAdapter;
 
 public class MyServices  extends AppCompatActivity {
 

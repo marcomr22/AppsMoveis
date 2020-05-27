@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,14 +18,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import CustomAdapter.CustomAdapter;
-import handlers.AuthHandler;
-import handlers.FirestoreHandler;
-import models.Advert;
-import models.User;
-import recycleView_cardView.ItemAdapter;
+import com.example.app.CustomAdapter.CustomAdapter;
+import com.example.app.handlers.AuthHandler;
+import com.example.app.handlers.FirestoreHandler;
+import com.example.app.models.Advert;
+import com.example.app.models.User;
+import com.example.app.recycleView_cardView.ItemAdapter;
 
 public class FullListShort extends AppCompatActivity {
 

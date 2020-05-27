@@ -27,19 +27,17 @@ import com.bumptech.glide.Glide;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
-import handlers.AuthHandler;
-import handlers.FirebaseStorageHandler;
-import handlers.FirestoreHandler;
-import models.Advert;
-import models.User;
+import com.example.app.handlers.AuthHandler;
+import com.example.app.handlers.FirebaseStorageHandler;
+import com.example.app.handlers.FirestoreHandler;
+import com.example.app.models.Advert;
+import com.example.app.models.User;
 
-import static models.Advert.*;
+import static com.example.app.models.Advert.*;
 
 public class ServiceSettings extends AppCompatActivity {
 

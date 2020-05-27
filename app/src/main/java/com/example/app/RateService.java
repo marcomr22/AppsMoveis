@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import models.Advert;
-import models.User;
+import com.example.app.models.Advert;
+import com.example.app.models.User;
 
 public class RateService extends AppCompatActivity {
 

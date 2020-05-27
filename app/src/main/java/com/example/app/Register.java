@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import handlers.AuthHandler;
+import com.example.app.handlers.AuthHandler;
 
 public class Register extends AppCompatActivity{
     private EditText username;

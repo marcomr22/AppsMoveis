@@ -33,11 +33,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import handlers.AuthHandler;
-import handlers.FirebaseStorageHandler;
-import handlers.FirestoreHandler;
+import com.example.app.handlers.AuthHandler;
+import com.example.app.handlers.FirebaseStorageHandler;
+import com.example.app.handlers.FirestoreHandler;
 import io.grpc.internal.IoUtils;
-import models.User;
+import com.example.app.models.User;
 
 public class Profile extends AppCompatActivity {
     private static final String TAG = "Profile";

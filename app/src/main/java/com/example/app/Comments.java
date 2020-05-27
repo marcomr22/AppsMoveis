@@ -3,13 +3,11 @@ package com.example.app;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import recycleView_cardView.ItemAdapter;
-import recycleView_cardView.ItemModel;
+import com.example.app.recycleView_cardView.ItemModel;
 
 public class Comments extends AppCompatActivity {
 

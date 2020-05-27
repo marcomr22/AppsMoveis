@@ -10,12 +10,11 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import handlers.AuthHandler;
-import handlers.FirestoreHandler;
-import models.Advert;
-import models.User;
-import recycleView_cardView.ItemAdapter;
-import recycleView_cardView.ItemModel;
+import com.example.app.handlers.AuthHandler;
+import com.example.app.handlers.FirestoreHandler;
+import com.example.app.models.Advert;
+import com.example.app.models.User;
+import com.example.app.recycleView_cardView.ItemAdapter;
 
 public class HiredServices extends AppCompatActivity {
 

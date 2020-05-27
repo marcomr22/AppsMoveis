@@ -11,8 +11,8 @@ package com.example.app;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
 
-        import handlers.AuthHandler;
-        import models.User;
+        import com.example.app.handlers.AuthHandler;
+        import com.example.app.models.User;
 
 public class Re_Authentication extends AppCompatActivity {
     private static final String TAG = "Re_Authentication";

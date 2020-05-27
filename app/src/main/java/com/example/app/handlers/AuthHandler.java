@@ -1,12 +1,10 @@
-package handlers;
+package com.example.app.handlers;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,13 +13,11 @@ import com.example.app.FullListShort;
 import com.example.app.Login;
 import com.example.app.Menu;
 import com.example.app.Profile;
-import com.example.app.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -31,7 +27,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.concurrent.Executor;
 
-import models.User;
+import com.example.app.models.User;
 
 public class AuthHandler {
     private static final String TAG = "AuthHandler";
@@ -160,11 +156,12 @@ public class AuthHandler {
     }
 
     public void deleteUser(EditText password, final Context context) {
-        Log.d(TAG, "Delete User");
-        String password_aux = password.getText().toString().trim();
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
         final String uid_aux = user.getUid();
+
+        Log.d(TAG, "Delete User");
+        String password_aux = password.getText().toString().trim();
 
         if (password_aux.isEmpty()) {
             password.setError("Please enter your password");
@@ -184,6 +181,45 @@ public class AuthHandler {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 FirestoreHandler.deleteUser(uid_aux);
+                                Toast.makeText(context, "User deleted successfully", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(context, Login.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                context.startActivity(i);
+                            }
+                            else{
+                                Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void deleteUserGoogle(final GoogleSignInAccount acct, final Context context) {
+        mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
+        final String uid_aux = user.getUid();
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+
+        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Log.d(TAG, "User re-authenticated.");
+                    user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                FirestoreHandler.deleteUser(uid_aux);
+                                GoogleSignIn.getClient(
+                                        context,
+                                        new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+                                ).signOut();
                                 Toast.makeText(context, "User deleted successfully", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(context, Login.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -392,26 +428,27 @@ public class AuthHandler {
 
 
     public void firebaseAuthWithGoogle(final GoogleSignInAccount acct, final Context context) {
+        mAuth = FirebaseAuth.getInstance();
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         Log.d(TAG, acct.getEmail());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        FirebaseAuth.getInstance().signInWithCredential(credential)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             Log.d(TAG, FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            Intent i = new Intent(context, Menu.class);
+                            Intent i = new Intent(context, FullListShort.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(i);
                             String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             final String username = acct.getEmail().split("@")[0];
                             String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                            final User user = new User(uid, username, email,"", 0.0, "");
+                            final User user = new User(uid, username, email, "", 0.0, "");
                             FirestoreHandler.saveUser(user);
                         } else {
                             // If sign in fails, display a message to the user.

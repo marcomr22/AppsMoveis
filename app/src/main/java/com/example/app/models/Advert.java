@@ -1,6 +1,5 @@
-package models;
+package com.example.app.models;
 
-import android.icu.text.CaseMap;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;

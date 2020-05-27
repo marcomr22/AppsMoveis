@@ -3,8 +3,6 @@ package com.example.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,19 +10,16 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
-import handlers.AuthHandler;
-import handlers.FirestoreHandler;
-import models.Advert;
-import models.User;
+import com.example.app.handlers.AuthHandler;
+import com.example.app.handlers.FirestoreHandler;
+import com.example.app.models.Advert;
+import com.example.app.models.User;
 
 public class Service extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package recycleView_cardView;
+package com.example.app.recycleView_cardView;
 
 public class ItemModel {
 

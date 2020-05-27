@@ -1,6 +1,5 @@
-package recycleView_cardView;
+package com.example.app.recycleView_cardView;
 
-import android.security.keystore.SecureKeyImportUnavailableException;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -10,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app.R;
-
-import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

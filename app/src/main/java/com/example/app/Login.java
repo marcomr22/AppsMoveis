@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -15,14 +16,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.ArrayList;
 
-import handlers.AuthHandler;
-import handlers.FirestoreHandler;
-import models.Advert;
-import models.User;
+import com.example.app.handlers.AuthHandler;
+import com.example.app.handlers.FirestoreHandler;
+import com.example.app.models.Advert;
+import com.example.app.models.User;
 
 public class Login extends AppCompatActivity{
     private static final String TAG = "Google Sign In";
@@ -121,10 +128,12 @@ public class Login extends AppCompatActivity{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Log.d("APP", "onActivityRESULT CALLED1");
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+                Log.d("APP", "onActivityRESULT BEOFRE FIREBASE!!!");
                 authHandler.firebaseAuthWithGoogle(account,getApplicationContext());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
@@ -134,7 +143,7 @@ public class Login extends AppCompatActivity{
         }
     }
 /*
-    public void firebaseAuthWithGoogle(final GoogleSignInAccount acct, final Context context) {
+    public void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         Log.d(TAG, acct.getEmail());
@@ -162,5 +171,6 @@ public class Login extends AppCompatActivity{
                         }
                     }
                 });
-    }*/
+    }
+    */
 }
