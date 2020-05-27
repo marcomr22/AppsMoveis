@@ -59,6 +59,7 @@ public class ServiceSettings extends AppCompatActivity {
     private ImageButton right;
     private User MyUser;
     private Category category;
+    private ArrayList<Bitmap> bitmapList = new ArrayList<>();
     List<byte[]> imageList = new ArrayList<>();
     List<String> finalList;
     private Advert a;
@@ -140,21 +141,39 @@ public class ServiceSettings extends AppCompatActivity {
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(picNumber != -1){
-                   if(picNumber == 0){
-                       picNumber = finalList.size()-1;
-                   }else {
-                       picNumber--;
+                if(!bitmapList.isEmpty()){
+                    if(picNumber != -1) {
+                        if (picNumber == 0) {
+                            picNumber = bitmapList.size() - 1;
+                        } else {
+                            picNumber--;
+                        }
+                        image.setImageBitmap(bitmapList.get(picNumber));
+                    }
+                } else if(picNumber != -1){
+                       if(picNumber == 0){
+                           picNumber = finalList.size()-1;
+                       }else {
+                           picNumber--;
+                       }
+                       Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(picNumber)).into(image);
                    }
-                   Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(picNumber)).into(image);
-               }
-            }
+                }
         });
 
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(picNumber != -1){
+                if(!bitmapList.isEmpty()){
+                    if(picNumber != -1) {
+                        if (picNumber == finalList.size() - 1) {
+                            picNumber = 0;
+                        } else {
+                            picNumber++;
+                        }
+                        image.setImageBitmap(bitmapList.get(picNumber));
+                    }
+                } else if(picNumber != -1){
                     if(picNumber == finalList.size()-1){
                         picNumber = 0;
                     }else {
@@ -265,6 +284,7 @@ public class ServiceSettings extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 6) {
 
             imageList = new ArrayList<>();
+            bitmapList = new ArrayList<Bitmap>();
             ClipData clipData = data.getClipData();
 
             //Several Images selected
@@ -274,6 +294,7 @@ public class ServiceSettings extends AppCompatActivity {
                     try {
                         InputStream stream = getContentResolver().openInputStream(imageUri);
                         Bitmap image = BitmapFactory.decodeStream(stream);
+                        bitmapList.add(image);
                         ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
                         image.compress(Bitmap.CompressFormat.PNG, 100, stream2);
                         byte[] imageBytes = stream2.toByteArray();
@@ -287,6 +308,7 @@ public class ServiceSettings extends AppCompatActivity {
                 try {
                     InputStream stream = getContentResolver().openInputStream(data.getData());
                     Bitmap image = BitmapFactory.decodeStream(stream);
+                    bitmapList.add(image);
                     ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
                     image.compress(Bitmap.CompressFormat.PNG, 100, stream2);
                     byte[] imageBytes = stream2.toByteArray();
@@ -296,8 +318,14 @@ public class ServiceSettings extends AppCompatActivity {
                 }
             }
             //Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(0)).into(image);
+            displayImages();
             saveImages();
         }
+    }
+
+    private void displayImages(){
+        picNumber = 0;
+        image.setImageBitmap(bitmapList.get(0));
     }
 
     //Permissions
