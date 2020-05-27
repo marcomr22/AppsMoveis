@@ -166,7 +166,7 @@ public class ServiceSettings extends AppCompatActivity {
             public void onClick(View v) {
                 if(!bitmapList.isEmpty()){
                     if(picNumber != -1) {
-                        if (picNumber == finalList.size() - 1) {
+                        if (picNumber == bitmapList.size() - 1) {
                             picNumber = 0;
                         } else {
                             picNumber++;
