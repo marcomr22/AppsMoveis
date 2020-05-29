@@ -41,7 +41,6 @@ import static com.example.app.models.Advert.*;
 
 public class ServiceSettings extends AppCompatActivity {
 
-    private EditText title;
     private EditText description;
     private EditText price;
     private CheckBox hourlyRate;
@@ -76,7 +75,6 @@ public class ServiceSettings extends AppCompatActivity {
         int NewService = oldIntent.getIntExtra("New Service",0);
         MyUser = oldIntent.getParcelableExtra("MyUser");
 
-        title = findViewById(R.id.serviceTitle);
         description = findViewById(R.id.editText4);
         price = findViewById(R.id.price);
         hourlyRate = findViewById(R.id.hour_rate);
@@ -213,7 +211,7 @@ public class ServiceSettings extends AppCompatActivity {
         for (String s: finalList) Log.d("teste", "URL no final vectot: " + s);
 
 
-        String desc = title.getText().toString() + "\n" + description.getText().toString();
+        String desc = description.getText().toString();
         float priceValue = Float.parseFloat(String.valueOf(price.getText()));
 
         return new Advert(advertId ,AuthHandler.getUser().getUid().toString(),category, desc, priceValue , hourlyRate.isChecked(),finalList,rating,voteCount);
@@ -266,7 +264,6 @@ public class ServiceSettings extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if(checkExternalStoragePermission()){
-                //finalList = new ArrayList<>();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setType("image/*");
@@ -317,7 +314,6 @@ public class ServiceSettings extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            //Glide.with(ServiceSettings.this).asBitmap().load(finalList.get(0)).into(image);
             displayImages();
             saveImages();
         }
