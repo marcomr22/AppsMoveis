@@ -99,23 +99,10 @@ public class Login extends AppCompatActivity{
     public void onStart() {
         super.onStart();
 
-        Log.d("test", "initiated");
-        FirestoreHandler
-                .saveAdvert(new Advert("advert12", "uid0", Advert.Category.CARPENTRY, "está funcionar", 12, false, new ArrayList<String>(), 10,10));
-
-
         if (AuthHandler.getUser() != null){
             Intent i = new Intent(Login.this, FullListShort.class);
             startActivity(i);
         }
-
-        FirestoreHandler.getUser("uid0", new FirestoreHandler.UserCallback() {
-            @Override
-            public void onCallback(User user) {
-                Log.d("Test", user.toString());
-
-            }
-        });
 
     }
 

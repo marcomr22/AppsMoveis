@@ -443,21 +443,16 @@ public class AuthHandler {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             Log.d(TAG, FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            Intent i = new Intent(context, FullListShort.class);
+                            final Intent i = new Intent(context, FullListShort.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            FirestoreHandler.getUser(uid, new FirestoreHandler.UserCallback() {
-                                @Override
-                                public void onCallback(User user) {
-                                    if(user.getName()==""){
-                                        final String username = acct.getEmail().split("@")[0];
-                                        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                                        final User m_user = new User(uid, username, email, "", 0.0, "");
-                                        FirestoreHandler.saveUser(m_user);
-                                    }
-                                }
-                            });
-                            context.startActivity(i);
+                            if(task.getResult().getAdditionalUserInfo().isNewUser()){
+                                final String username = FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0];
+                                String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                                final User m_user = new User(uid, username, email, "", 0.0, "");
+                                FirestoreHandler.saveUser(m_user);
+                            }
+                        context.startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());

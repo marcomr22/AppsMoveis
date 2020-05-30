@@ -83,7 +83,7 @@ public class FullListShort extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 itemsList.clear();
-                firestoreHandler = new FirestoreHandler(FullListShort.this, Advert.Category.convert(position), null);
+                firestoreHandler = new FirestoreHandler(FullListShort.this, Advert.Category.convert(position));
                 loadServices();
             }
             @Override

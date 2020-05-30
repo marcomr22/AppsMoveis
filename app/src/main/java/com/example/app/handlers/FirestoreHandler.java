@@ -5,8 +5,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,14 +31,12 @@ public class FirestoreHandler {
     private Activity activity;
     private FirebaseFirestore bd;
     private Advert.Category category;
-    private String user;
     private DocumentSnapshot docSnapshot;
 
 
-    public FirestoreHandler(Activity activity, Advert.Category category, String user) {
+    public FirestoreHandler(Activity activity, Advert.Category category) {
         this.activity = activity;
         this.category = category;
-        this.user = user;
         this.bd = FirebaseFirestore.getInstance();
     }
 
@@ -72,6 +72,7 @@ public class FirestoreHandler {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
                             Log.d(TAG_READ_SUCCESSFUL, "User from db");
+                            Log.d("teste", documentSnapshot.toObject(User.class).toString());
                             callback.onCallback(documentSnapshot.toObject(User.class));
                         }
                     }
@@ -80,6 +81,7 @@ public class FirestoreHandler {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG_READ_FAILURE, "User from db");
+                        callback.onCallback(null);
                     }
                 });
     }
