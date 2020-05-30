@@ -142,35 +142,4 @@ public class Login extends AppCompatActivity{
             }
         }
     }
-/*
-    public void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-
-        Log.d(TAG, acct.getEmail());
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        FirebaseAuth.getInstance().signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            Log.d(TAG, FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            Intent i = new Intent(getApplicationContext(), Menu.class);
-                            startActivity(i);
-                            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            final String username = acct.getEmail().split("@")[0];
-                            String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                            final User user = new User(uid, username, email,"", 0.0, "");
-                            FirestoreHandler.saveUser(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.LoginGoogle), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-    */
 }

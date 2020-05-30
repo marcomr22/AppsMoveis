@@ -203,6 +203,7 @@ public class AuthHandler {
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
         final String uid_aux = user.getUid();
+        Log.d(TAG,uid_aux);
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
 
